@@ -11,5 +11,5 @@ export default async function ProductPage({ params }: ProductPageProps) {
       return <h1>Error: ID not found</h1>
     }
 
-    return <h1>Producto ID: {resolvedParams.id}</h1>
+    return <h1>Product ID: {resolvedParams.id}</h1>
 }
