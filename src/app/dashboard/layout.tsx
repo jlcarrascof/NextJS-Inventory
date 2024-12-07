@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </ul>
           </nav>
         </aside>
-        <main className="content">
+        <main className="main-content">
           {children}
         </main>
       </div>
