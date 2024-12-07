@@ -5,6 +5,11 @@ interface ProductPageProps {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-    const productId = params.id
-    return <h1>Product ID: {productId}</h1>
+    const resolvedParams = await params
+
+    if (!resolvedParams || !resolvedParams.id) {
+        return <h1>Error: ID not found</h1>
+    }
+
+    return <h1>Producto ID: {resolvedParams.id}</h1>
 }
