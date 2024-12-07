@@ -4,6 +4,7 @@ interface ProductPageProps {
     }
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-    return <h1>Product ID: {params.id}</h1>
+export default async function ProductPage({ params }: ProductPageProps) {
+    const productId = params.id
+    return <h1>Product ID: {productId}</h1>
 }
