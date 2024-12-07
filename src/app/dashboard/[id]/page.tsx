@@ -4,7 +4,7 @@ interface ProductPageProps {
     }
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+  export default async function ProductPage({ params }: ProductPageProps) {
     const resolvedParams = await params
 
     if (!resolvedParams || !resolvedParams.id) {
@@ -12,4 +12,4 @@ export default async function ProductPage({ params }: ProductPageProps) {
     }
 
     return <h1>Product ID: {resolvedParams.id}</h1>
-}
+  }
