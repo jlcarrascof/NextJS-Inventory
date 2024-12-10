@@ -3,6 +3,10 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
+
+    await prisma.$executeRaw`DELETE FROM Department;`
+    await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name = 'Department';`
+
     await prisma.department.deleteMany()
     await prisma.department.createMany({
         data: [
