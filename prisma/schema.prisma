@@ -27,11 +27,13 @@ model Department {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
-  name        String
-  quantity    Int
-  price       Float
-  createdAt   DateTime  @default(now())
-  department  Department @relation(fields: [departmentId], references: [id]) // Relationship with Department
+  id           Int       @id @default(autoincrement())
+  name         String
+  quantity     Int
+  price        Float
+  createdAt    DateTime  @default(now())
+  department   Department @relation(fields: [departmentId], references: [id]) // Relationship with Department
   departmentId Int
+  supplier     Supplier?  @relation(fields: [supplierId], references: [id])
+  supplierId   Int?
 }
