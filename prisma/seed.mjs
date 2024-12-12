@@ -11,7 +11,7 @@ async function main() {
     await prisma.$executeRaw`DELETE FROM Department;`
     await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name = 'Department';`
 
-    // Create departments
+    // Create Departments
     await prisma.department.createMany({
         data: [
             { name: 'Tools' },
@@ -20,6 +20,14 @@ async function main() {
         ],
     })
     console.log('Departaments created')
+
+    // Create suppliers
+    await prisma.supplier.createMany({
+        data: [
+            { name: 'Paints Supplier', contact: 'supplier-paints@gmail.com' },
+            { name: 'Tools Supplier', contact: 'supplier-tools@gmail.com' },
+        ],
+    })
 
     // Create Products
     await prisma.product.createMany({
