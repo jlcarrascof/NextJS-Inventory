@@ -4,6 +4,10 @@ const prisma = new PrismaClient()
 
 async function main() {
 
+    await prisma.$executeRaw`DELETE FROM Supplier;`
+    await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name = 'Supplier';`
+    await prisma.$executeRaw`DELETE FROM Product;`
+    await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name = 'Product';`
     await prisma.$executeRaw`DELETE FROM Department;`
     await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name = 'Department';`
 
