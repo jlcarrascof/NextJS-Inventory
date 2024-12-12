@@ -21,7 +21,7 @@ async function main() {
     })
     console.log('Departaments created')
 
-    await prisma.product.deleteMany()
+    // Create Products
     await prisma.product.createMany({
         data: [
             { name: 'Martillo', quantity: 15, price: 12.99, departmentId: 1 },
