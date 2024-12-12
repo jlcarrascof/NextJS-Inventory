@@ -34,7 +34,7 @@ async function main() {
         data: [
             { name: 'Hammer', quantity: 15, price: 15.99, cost: 12.99, departmentId: 1, supplierId: 2 },
             { name: 'White Paint', quantity: 25, price: 19.99, cost: 17.99, departmentId: 2, supplierId: 1 },
-            { name: 'Electric Cable', quantity: 50, price: 4.99, cost: 2.99, departmentId: 3, supplierId: 1 },
+            { name: 'Electric Cable', quantity: 50, price: 4.99, cost: 2.99, departmentId: 3, supplierId: 2 },
         ],
     })
     console.log('Products created')
