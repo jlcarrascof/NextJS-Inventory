@@ -13,6 +13,13 @@ datasource db {
   url      = "file:./dev.db"
 }
 
+model Supplier {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  contact   String?
+  products  Product[] // Relationship 1:N with Product
+}
+
 model Department {
   id        Int       @id @default(autoincrement())
   name      String    @unique
@@ -20,11 +27,14 @@ model Department {
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
-  name        String
-  quantity    Int
-  price       Float
-  createdAt   DateTime  @default(now())
-  department  Department @relation(fields: [departmentId], references: [id]) // Relationship with Department
+  id           Int       @id @default(autoincrement())
+  name         String
+  quantity     Int
+  price        Float
+  cost         Float
+  createdAt    DateTime  @default(now())
+  department   Department @relation(fields: [departmentId], references: [id]) // Relationship with Department
   departmentId Int
+  supplier     Supplier?  @relation(fields: [supplierId], references: [id])
+  supplierId   Int?
 }
