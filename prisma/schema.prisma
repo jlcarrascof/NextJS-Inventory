@@ -31,6 +31,7 @@ model Product {
   name         String
   quantity     Int
   price        Float
+  cost         Float
   createdAt    DateTime  @default(now())
   department   Department @relation(fields: [departmentId], references: [id]) // Relationship with Department
   departmentId Int
