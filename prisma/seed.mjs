@@ -32,9 +32,9 @@ async function main() {
     // Create Products
     await prisma.product.createMany({
         data: [
-            { name: 'Martillo', quantity: 15, price: 12.99, departmentId: 1 },
-            { name: 'Pintura Blanca', quantity: 25, price: 19.99, departmentId: 2 },
-            { name: 'Cable Eléctrico', quantity: 50, price: 4.99, departmentId: 3 },
+            { name: 'Hammer', quantity: 15, price: 12.99, departmentId: 1 },
+            { name: 'White Paint', quantity: 25, price: 19.99, departmentId: 2 },
+            { name: 'Electric Cable', quantity: 50, price: 4.99, departmentId: 3 },
         ],
     })
     console.log('Products created')
