@@ -11,7 +11,7 @@ async function main() {
     await prisma.$executeRaw`DELETE FROM Department;`
     await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name = 'Department';`
 
-    await prisma.department.deleteMany()
+    // Create departments
     await prisma.department.createMany({
         data: [
             { name: 'Tools' },
