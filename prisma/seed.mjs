@@ -14,9 +14,9 @@ async function main() {
     await prisma.department.deleteMany()
     await prisma.department.createMany({
         data: [
-            { name: 'Herramientas' },
-            { name: 'Pinturas' },
-            { name: 'Electricidad' },
+            { name: 'Tools' },
+            { name: 'Paints' },
+            { name: 'Electricity' },
         ],
     })
     console.log('Departaments created')
