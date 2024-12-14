@@ -11,13 +11,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <aside className="w-64 bg-gray-200 p-4">
         <nav>
           <ul className="space-y-2">
-            <li className="flex items-center space-x-2">
-              <FaHome />
-              <a href="/dashboard" className="block p-2 rounded hover:bg-gray-300">
-                Home
+            <li>
+              <a href="/dashboard" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-300">
+                <FaHome />
+                <div className="px-2">
+                  Home
+                </div>
               </a>
             </li>
-            <li>
+            <li className="flex items-center space-x-2">
+              <FaList />
               <a href="/dashboard/departments" className="block p-2 rounded hover:bg-gray-300">
                 Departments
               </a>
