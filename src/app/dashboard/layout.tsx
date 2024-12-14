@@ -1,11 +1,15 @@
 import { ReactNode } from 'react'
 import { FaHome, FaList, FaBox } from 'react-icons/fa'
+import { usePathname } from 'next/navigation'
 
 interface DashboardLayoutProps {
     children: ReactNode
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+
+  const pathname = usePathname()
+
   return (
     <div className="flex min-h-screen">
       <aside className="w-64 bg-green-200 p-4">
