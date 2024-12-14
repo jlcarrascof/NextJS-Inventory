@@ -28,8 +28,11 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </a>
             </li>
             <li>
-              <a href="/dashboard/products" className="block p-2 rounded hover:bg-gray-300">
-                Products
+              <a href="/dashboard/products" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-300">
+                <FaBox />
+                <div className="px-2">
+                  Products
+                </div>
               </a>
             </li>
           </ul>
