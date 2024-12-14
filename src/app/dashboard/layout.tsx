@@ -8,11 +8,11 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="flex min-h-screen">
-      <aside className="w-64 bg-gray-200 p-4">
+      <aside className="w-64 bg-green-200 p-4">
         <nav>
           <ul className="space-y-2">
             <li>
-              <a href="/dashboard" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-300">
+              <a href="/dashboard" className="flex items-center space-x-2 p-2 rounded hover:bg-green-400">
                 <FaHome />
                 <div className="px-2">
                   Home
@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </a>
             </li>
             <li>
-              <a href="/dashboard/departments" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-300">
+              <a href="/dashboard/departments" className="flex items-center space-x-2 p-2 rounded hover:bg-green-400">
                 <FaList />
                 <div className="px-2">
                   Departments
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </a>
             </li>
             <li>
-              <a href="/dashboard/products" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-300">
+              <a href="/dashboard/products" className="flex items-center space-x-2 p-2 rounded hover:bg-green-400">
                 <FaBox />
                 <div className="px-2">
                   Products
