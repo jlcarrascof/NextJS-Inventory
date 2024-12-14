@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { FaHome, FaList, FaBox } from 'react-icons/fa'
 
 interface DashboardLayoutProps {
     children: ReactNode
