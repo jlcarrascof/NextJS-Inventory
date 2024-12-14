@@ -16,13 +16,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </a>
             </li>
             <li>
-              <a href="/dashboard/reports" className="block p-2 rounded hover:bg-gray-300">
-                Reports
+              <a href="/dashboard/departments" className="block p-2 rounded hover:bg-gray-300">
+                Departments
               </a>
             </li>
             <li>
-              <a href="/dashboard/settings" className="block p-2 rounded hover:bg-gray-300">
-                Configurations
+              <a href="/dashboard/products" className="block p-2 rounded hover:bg-gray-300">
+                Products
               </a>
             </li>
           </ul>
