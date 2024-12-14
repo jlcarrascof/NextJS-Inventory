@@ -19,10 +19,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 </div>
               </a>
             </li>
-            <li className="flex items-center space-x-2">
-              <FaList />
-              <a href="/dashboard/departments" className="block p-2 rounded hover:bg-gray-300">
-                Departments
+            <li>
+              <a href="/dashboard/departments" className="flex items-center space-x-2 p-2 rounded hover:bg-gray-300">
+                <FaList />
+                <div className="px-2">
+                  Departments
+                </div>
               </a>
             </li>
             <li>
