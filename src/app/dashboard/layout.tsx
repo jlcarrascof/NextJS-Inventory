@@ -27,7 +27,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </a>
             </li>
             <li>
-              <a href="/dashboard/departments" className="flex items-center space-x-2 p-2 rounded hover:bg-green-400">
+              <a
+                href="/dashboard/departments"
+                className={`flex items-center space-x-2 p-2 rounded hover:bg-green-400 ${
+                pathname === '/dashboard/departments' ? 'bg-green-400 text-white' : ''
+                }`}
+              >
                 <FaList />
                 <div className="px-2">
                   Departments
