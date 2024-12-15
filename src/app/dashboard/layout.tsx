@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className="flex min-h-screen">
-      <aside className="w-64 bg-green-200 p-4">
+      <aside className="w-64 bg-green-700 text-white p-4 font-bold">
         <nav>
           <ul className="space-y-2">
             <li>
