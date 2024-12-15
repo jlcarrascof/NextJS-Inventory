@@ -1,26 +1,55 @@
+'use client'
+
+import { ReactNode } from 'react'
+import { FaHome, FaList, FaBox } from 'react-icons/fa'
+import { usePathname } from 'next/navigation'
+
 interface DashboardLayoutProps {
-    children: React.ReactNode
+    children: ReactNode
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+
+  const pathname = usePathname()
+
   return (
     <div className="flex min-h-screen">
-      <aside className="w-64 bg-gray-200 p-4">
+      <aside className="w-64 bg-green-700 text-white p-4 font-bold">
         <nav>
           <ul className="space-y-2">
             <li>
-              <a href="/dashboard" className="block p-2 rounded hover:bg-gray-300">
-                Home
+              <a href="/dashboard"
+              className={`flex items-center space-x-2 p-2 rounded hover:bg-green-400 $pathname === '/dashboard' ? 'bg-green-400 text-white': ''}`}>
+                <FaHome />
+                <div className="px-2">
+                  Home
+                </div>
               </a>
             </li>
             <li>
-              <a href="/dashboard/reports" className="block p-2 rounded hover:bg-gray-300">
-                Reports
+              <a
+                href="/dashboard/departments"
+                className={`flex items-center space-x-2 p-2 rounded hover:bg-green-400 ${
+                pathname === '/dashboard/departments' ? 'bg-green-400 text-white' : ''
+                }`}
+              >
+                <FaList />
+                <div className="px-2">
+                  Departments
+                </div>
               </a>
             </li>
             <li>
-              <a href="/dashboard/settings" className="block p-2 rounded hover:bg-gray-300">
-                Configurations
+              <a
+                href="/dashboard/products"
+                className={`flex items-center space-x-2 p-2 rounded hover:bg-green-400 ${
+                pathname === '/dashboard/products' ? 'bg-green-400 text-white' : ''
+                }`}
+              >
+                <FaBox />
+                <div className="px-2">
+                  Products
+                </div>
               </a>
             </li>
           </ul>
