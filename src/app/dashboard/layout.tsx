@@ -9,7 +9,7 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  
+  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
   return (
