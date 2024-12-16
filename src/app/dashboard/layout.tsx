@@ -21,6 +21,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <FaBars />
       </button>
 
+      {/* Sidebar */}
       <aside className="w-64 bg-green-700 text-white p-4 font-bold">
         <nav>
           <ul className="space-y-2">
