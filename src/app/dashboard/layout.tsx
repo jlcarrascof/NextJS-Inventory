@@ -30,7 +30,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <ul className="space-y-2">
             <li>
               <a href="/dashboard"
-              className={`flex items-center space-x-2 p-2 rounded hover:bg-green-400 $pathname === '/dashboard' ? 'bg-green-400 text-white': ''}`}>
+              className={`flex items-center space-x-2 p-2 rounded  hover:bg-green-400 $pathname === '/dashboard' ? 'bg-green-400 text-white': ''}`}>
                 <FaHome />
                 <div className="px-2">
                   Home
