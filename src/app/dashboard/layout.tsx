@@ -22,7 +22,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       </button>
 
       {/* Sidebar */}
-      <aside className="w-64 bg-green-700 text-white p-4 font-bold">
+      <aside className={`fixed top-0 left-0 w-64 bg-green-700 text-white    p-4 font-bold transform ${ isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform md:relative  md:translate-x-0`}
+      >
         <nav>
           <ul className="space-y-2">
             <li>
