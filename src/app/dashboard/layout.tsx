@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 w-64 h-full bg-green-700 text-white p-4 font-bold transform ${
+        className={`fixed top-0 left-0 w-64 h-full min-h-screen  bg-green-700 text-white p-4 font-bold transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 md:relative md:translate-x-0`}
       >
