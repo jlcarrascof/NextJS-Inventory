@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         } transition-transform duration-300 md:relative md:translate-x-0`}
       >
         <nav>
-          <ul className="space-y-2">
+          <ul className="space-y-2 mt-16 md:mt-0">
             <li>
               <a href="/dashboard"
               className={`flex items-center space-x-2 p-2 rounded  hover:bg-green-400 $pathname === '/dashboard' ? 'bg-green-400 text-white': ''}`}>
