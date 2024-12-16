@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { FaHome, FaList, FaBox } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
@@ -9,7 +9,7 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-
+  
   const pathname = usePathname()
 
   return (
