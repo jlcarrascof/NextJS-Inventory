@@ -15,8 +15,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="flex min-h-screen">
       {/* Button for small screens */}
-      <button onClick={() => setIsOpen(!isOpen)}
-              className="p-2 bg-green-700 text-white md:hidden"
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="absolute top-4 left-4 z-50 p-2 bg-green-700 text-white rounded md:hidden"
       >
         <FaBars />
       </button>
