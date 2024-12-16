@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, useState } from 'react'
-import { FaHome, FaList, FaBox } from 'react-icons/fa'
+import { FaHome, FaList, FaBox, FaBars } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
 interface DashboardLayoutProps {
@@ -15,8 +15,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <div className="flex min-h-screen">
       {/* Button for small screens */}
+      <button onClick={() => setIsOpen(!isOpen)}
+              className="p-2 bg-green-700 text-white md:hidden"
+      >
+        <FaBars />
+      </button>
 
-      
       <aside className="w-64 bg-green-700 text-white p-4 font-bold">
         <nav>
           <ul className="space-y-2">
