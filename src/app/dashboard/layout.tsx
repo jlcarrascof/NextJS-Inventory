@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, useState } from 'react'
-import { FaHome, FaList, FaBox, FaBars } from 'react-icons/fa'
+import { FaHome, FaList, FaBox, FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
 interface DashboardLayoutProps {
