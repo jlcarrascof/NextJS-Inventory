@@ -58,7 +58,7 @@ export default function DepartmentForm() {
             className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
             disabled={loading}
           >
-            {loading ? 'Creating...' : 'Create'}
+            <FaDatabase className="mr-2" /> {loading ? 'Creating...' : 'Create'}
           </button>
           {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
         </form>
