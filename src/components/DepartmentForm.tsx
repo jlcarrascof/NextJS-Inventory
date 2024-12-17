@@ -33,6 +33,10 @@ export default function DepartmentForm() {
         }
     }
 
+    const handleCancel = () => {
+        setDepartmentName('')
+    }
+
     return (
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
           <h2 className="text-2xl font-bold">Create Department</h2>
