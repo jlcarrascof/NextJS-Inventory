@@ -61,6 +61,12 @@ export default function DepartmentForm() {
             <FaDatabase className="mr-2" />
             <span>{loading ? 'Creating...' : 'Create'}</span>
           </button>
+          <button
+            onClick={handleCancel}
+            className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            <FaTimes className="mr-2" /> <span>Cancel</span>
+          </button>
           {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
         </form>
     )
