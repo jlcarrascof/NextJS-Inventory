@@ -53,20 +53,22 @@ export default function DepartmentForm() {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="flex items-center bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            disabled={loading}
-          >
-            <FaDatabase className="mr-2" />
-            <span>{loading ? 'Creating...' : 'Create'}</span>
-          </button>
-          <button
-            onClick={handleCancel}
-            className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            <FaTimes className="mr-2" /> <span>Cancel</span>
-          </button>
+          <div className="flex space-x-4">
+            <button
+                type="submit"
+                className="flex items-center bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                disabled={loading}
+            >
+                <FaDatabase className="mr-2" />
+                <span>{loading ? 'Creating...' : 'Create'}</span>
+            </button>
+            <button
+                onClick={handleCancel}
+                className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+                <FaTimes className="mr-2" /> <span>Cancel</span>
+            </button>
+          </div>
           {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
         </form>
     )
