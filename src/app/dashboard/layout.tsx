@@ -22,14 +22,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         {isOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-green opacity-50 z-40 md:hidden"
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
-
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 w-64 h-full min-h-screen  bg-green-700 text-white p-4 font-bold transform ${
