@@ -55,10 +55,11 @@ export default function DepartmentForm() {
           </div>
           <button
             type="submit"
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="flex items-center bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
             disabled={loading}
           >
-            <FaDatabase className="mr-2" /> {loading ? 'Creating...' : 'Create'}
+            <FaDatabase className="mr-2" />
+            <span>{loading ? 'Creating...' : 'Create'}</span>
           </button>
           {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
         </form>
