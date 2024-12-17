@@ -31,4 +31,31 @@ export default function DepartmentForm() {
           setLoading(false)
         }
     }
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
+          <h2 className="text-2xl font-bold">Create Department</h2>
+          <div>
+            <label htmlFor="name" className="block font-medium">
+              Department Name:
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            disabled={loading}
+          >
+            {loading ? 'Creating...' : 'Create'}
+          </button>
+          {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
+        </form>
+    )
 }
