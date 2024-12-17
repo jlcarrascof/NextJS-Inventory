@@ -17,9 +17,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Button for small screens */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute top-4 left-4 z-50 p-2 bg-green-700 text-white rounded md:hidden"
+        className="absolute top-4 right-4 z-50 p-2 bg-green-700 text-white rounded md:hidden"
       >
-        <FaBars />
+        {isOpen ? <FaTimes /> : <FaBars />}
       </button>
 
       {/* Sidebar */}
