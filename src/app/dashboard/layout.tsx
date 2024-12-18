@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, useState } from 'react'
-import { FaHome, FaList, FaBox, FaBars } from 'react-icons/fa'
+import { FaHome, FaList, FaBox, FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
 interface DashboardLayoutProps {
@@ -17,9 +17,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Button for small screens */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute top-4 left-4 z-50 p-2 bg-green-700 text-white rounded md:hidden"
+        className="absolute top-4 right-4 z-50 p-2 bg-green-700 text-white rounded md:hidden"
       >
-        <FaBars />
+        {isOpen ? <FaTimes /> : <FaBars />}
       </button>
 
       {/* Sidebar */}
@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         } transition-transform duration-300 md:relative md:translate-x-0`}
       >
         <nav>
-          <ul className="space-y-2 mt-16 md:mt-0">
+          <ul className="space-y-2">
             <li>
               <a href="/dashboard"
               className={`flex items-center space-x-2 p-2 rounded  hover:bg-green-400 $pathname === '/dashboard' ? 'bg-green-400 text-white': ''}`}>
