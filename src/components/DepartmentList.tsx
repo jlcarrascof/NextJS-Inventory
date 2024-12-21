@@ -26,6 +26,14 @@ export default function DepartmentList() {
         }
 
         fetchDepartments()
-      }, [])
+    }, [])
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
+
+    if (departments.length === 0) {
+        return <p>No departments found.</p>
+    }
 
 }
