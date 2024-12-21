@@ -5,7 +5,8 @@ import { FaArrowLeft } from 'react-icons/fa'
 
 export default function DepartmentList() {
 
-
+    const [departments, setDepartments] = useState([])
+    const [loading, setLoading] = useState(true)
 
 
 }
