@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { FaDatabase, FaTimes } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaArrowLeft } from 'react-icons/fa'
 
 export default function DepartmentForm() {
     const [name, setName] = useState('')
