@@ -10,8 +10,7 @@ interface Department {
 
 export default function DepartmentList() {
 
-    const [departments, setDepartments] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [departments, setDepartments] = useState<Department[]>([]);    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchDepartments = async () => {
