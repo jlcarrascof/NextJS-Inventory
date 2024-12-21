@@ -19,3 +19,12 @@ export async function POST(req: Request) {
       return new Response('Failed to create department', { status: 500 })
     }
 }
+
+export async function GET() {
+  try {
+    const departments = await prisma.department.findMany()
+    return Response.json(departments, { status: 200 })
+  } catch (error) {
+    return new Response('Failed to fetch departments', { status: 500 })
+  }
+}
