@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     }
 }
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     const departments = await prisma.department.findMany()
     return Response.json(departments, { status: 200 })
