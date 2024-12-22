@@ -22,6 +22,11 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
+
+    const url = new URL(req.url)
+    const page = parseInt(url.searchParams.get('page') || '1', 10)
+    const limit = parseInt(url.searchParams.get('limit') || '10', 10)
+
     const departments = await prisma.department.findMany()
     return Response.json(departments, { status: 200 })
   } catch (error) {
