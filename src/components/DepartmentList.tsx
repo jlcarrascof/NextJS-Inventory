@@ -64,7 +64,14 @@ export default function DepartmentList() {
             ))}
           </ul>
           <div className="flex justify-between mt-4">
-            
+            <button
+              onClick={handlePrevious}
+              disabled={page === 1}
+              className="flex items-center bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 disabled:opacity-50"
+            >
+              <FaArrowLeft className="mr-2" /> Previous
+            </button>
+
           </div>
           <button
             onClick={() => window.location.href = '/dashboard/departments'}
