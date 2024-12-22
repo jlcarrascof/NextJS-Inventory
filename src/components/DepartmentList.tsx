@@ -63,6 +63,9 @@ export default function DepartmentList() {
               </li>
             ))}
           </ul>
+          <div className="flex justify-between mt-4">
+            
+          </div>
           <button
             onClick={() => window.location.href = '/dashboard/departments'}
             className="mt-4 flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
