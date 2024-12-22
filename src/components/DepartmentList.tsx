@@ -11,6 +11,9 @@ interface Department {
 export default function DepartmentList() {
 
     const [departments, setDepartments] = useState<Department[]>([]);    const [loading, setLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+    const limit = 10
 
     useEffect(() => {
         const fetchDepartments = async () => {
