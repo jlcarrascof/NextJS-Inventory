@@ -45,6 +45,14 @@ export default function DepartmentList() {
         return <p>No departments found.</p>
     }
 
+    const handleNext = () => {
+      if (page < totalPages) setPage(page + 1)
+    }
+
+    const handlePrevious = () => {
+      if (page > 1) setPage(page - 1)
+    }
+
     return (
         <div>
           <h2 className="text-2xl font-bold mb-4">Departments List</h2>
