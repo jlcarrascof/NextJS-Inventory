@@ -34,7 +34,7 @@ export async function GET(req: Request) {
 
     const total = await prisma.department.count()
 
-    return Response.json(departments, { status: 200 })
+    return Response.json({ departments, total, page, limit }, { status: 200 })
   } catch (error) {
     return new Response('Failed to fetch departments', { status: 500 })
   }
