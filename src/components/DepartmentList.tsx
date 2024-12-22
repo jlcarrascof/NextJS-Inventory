@@ -71,7 +71,9 @@ export default function DepartmentList() {
             >
               <FaArrowLeft className="mr-2" /> Previous
             </button>
-
+            <span className="text-gray-700">
+              Page {page} of {totalPages}
+            </span>
           </div>
           <button
             onClick={() => window.location.href = '/dashboard/departments'}
