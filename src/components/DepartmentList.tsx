@@ -17,11 +17,13 @@ export default function DepartmentList() {
 
     useEffect(() => {
         const fetchDepartments = async () => {
+          setLoading(true)
           try {
-            const response = await fetch('/api/departments')
+            const response = await fetch(`/api/departments?page=${page}&limit=${limit}`)
             if (response.ok) {
               const data = await response.json()
-              setDepartments(data)
+              setDepartments(data.departments)
+              setTotalPages(Math.ceil(data.total / limit))
             } else {
               console.error('Failed to fetch departments')
             }
@@ -33,7 +35,7 @@ export default function DepartmentList() {
         }
 
         fetchDepartments()
-    }, [])
+    }, [page])
 
     if (loading) {
         return <p>Loading...</p>
