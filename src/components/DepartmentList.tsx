@@ -74,6 +74,13 @@ export default function DepartmentList() {
             <span className="text-gray-700">
               Page {page} of {totalPages}
             </span>
+            <button
+              onClick={handleNext}
+              disabled={page === totalPages}
+              className="flex items-center bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 disabled:opacity-50"
+            >
+              Next <FaArrowRight className="ml-2" />
+            </button>
           </div>
           <button
             onClick={() => window.location.href = '/dashboard/departments'}
