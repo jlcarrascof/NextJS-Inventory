@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { FaDatabase, FaTimes } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaFileAlt } from 'react-icons/fa'
 
 export default function DepartmentForm() {
     const [name, setName] = useState('')
@@ -67,6 +67,12 @@ export default function DepartmentForm() {
                 className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
             >
                 <FaTimes className="mr-2" /> <span>Cancel</span>
+            </button>
+            <button
+                onClick={() => window.location.href = '/dashboard/departments/list'}
+                className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+                <FaFileAlt className="mr-2" /> <span>View List</span>
             </button>
           </div>
           {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
