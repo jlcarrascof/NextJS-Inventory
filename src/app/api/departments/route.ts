@@ -20,10 +20,21 @@ export async function POST(req: Request) {
     }
 }
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    const departments = await prisma.department.findMany()
-    return Response.json(departments, { status: 200 })
+
+    const url = new URL(req.url)
+    const page = parseInt(url.searchParams.get('page') || '1', 10)
+    const limit = parseInt(url.searchParams.get('limit') || '10', 10)
+
+    const departments = await prisma.department.findMany({
+      skip: (page - 1) * limit,
+      take: limit,
+    })
+
+    const total = await prisma.department.count()
+
+    return Response.json({ departments, total, page, limit }, { status: 200 })
   } catch (error) {
     return new Response('Failed to fetch departments', { status: 500 })
   }

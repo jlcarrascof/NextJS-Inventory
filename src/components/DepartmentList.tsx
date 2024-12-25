@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 interface Department {
     id: number
@@ -11,14 +11,19 @@ interface Department {
 export default function DepartmentList() {
 
     const [departments, setDepartments] = useState<Department[]>([]);    const [loading, setLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+    const limit = 10
 
     useEffect(() => {
         const fetchDepartments = async () => {
+          setLoading(true)
           try {
-            const response = await fetch('/api/departments')
+            const response = await fetch(`/api/departments?page=${page}&limit=${limit}`)
             if (response.ok) {
               const data = await response.json()
-              setDepartments(data)
+              setDepartments(data.departments)
+              setTotalPages(Math.ceil(data.total / limit))
             } else {
               console.error('Failed to fetch departments')
             }
@@ -30,7 +35,7 @@ export default function DepartmentList() {
         }
 
         fetchDepartments()
-    }, [])
+    }, [page])
 
     if (loading) {
         return <p>Loading...</p>
@@ -38,6 +43,14 @@ export default function DepartmentList() {
 
     if (departments.length === 0) {
         return <p>No departments found.</p>
+    }
+
+    const handleNext = () => {
+      if (page < totalPages) setPage(page + 1)
+    }
+
+    const handlePrevious = () => {
+      if (page > 1) setPage(page - 1)
     }
 
     return (
@@ -50,6 +63,25 @@ export default function DepartmentList() {
               </li>
             ))}
           </ul>
+          <div className="flex justify-between mt-4">
+            <button
+              onClick={handlePrevious}
+              disabled={page === 1}
+              className="flex items-center bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 disabled:opacity-50"
+            >
+              <FaArrowLeft className="mr-2" /> Previous
+            </button>
+            <span className="text-gray-700">
+              Page {page} of {totalPages}
+            </span>
+            <button
+              onClick={handleNext}
+              disabled={page === totalPages}
+              className="flex items-center bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 disabled:opacity-50"
+            >
+              Next <FaArrowRight className="ml-2" />
+            </button>
+          </div>
           <button
             onClick={() => window.location.href = '/dashboard/departments'}
             className="mt-4 flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
