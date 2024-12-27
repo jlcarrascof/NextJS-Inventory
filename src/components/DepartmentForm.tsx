@@ -66,15 +66,6 @@ export default function DepartmentForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
           <h2 className="text-2xl font-bold">Create Department</h2>
-          <div>
-            <button
-              type="button"
-              onClick={() => setSearchActive(!searchActive)}
-              className="flex items-center bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
-            >
-              <FaSearch className="mr-2" /> <span>Find</span>
-            </button>
-          </div>
           <div className={`transition-all ${searchActive ? 'block' : 'hidden'}`}>
             <label htmlFor="search" className="block font-medium">
               Search Department:
@@ -131,6 +122,13 @@ export default function DepartmentForm() {
                 className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
 >
                 <FaFileAlt className="mr-2" /> <span>View List</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setSearchActive(!searchActive)}
+              className="flex items-center bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+            >
+              <FaSearch className="mr-2" /> <span>Find</span>
             </button>
           </div>
           {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
