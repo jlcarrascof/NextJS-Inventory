@@ -10,6 +10,14 @@ export default function DepartmentForm() {
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
+    const handleSearch = async (query: string) => {
+      setSearch(query)
+      if (query.trim() === '') {
+        setSearchResults([])
+        return
+      }
+
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
