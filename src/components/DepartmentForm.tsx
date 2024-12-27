@@ -35,6 +35,13 @@ export default function DepartmentForm() {
       fetchDepartments()
     }, [])
 
+    const filteredDepartments =
+      query === ''
+        ? departments
+        : departments.filter((department) =>
+          department.name.toLowerCase().includes(query.toLowerCase())
+    )
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
