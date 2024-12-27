@@ -71,6 +71,7 @@ export default function DepartmentForm() {
 
     const handleCancel = () => {
         setName('')
+        setSelectedDepartment(null)
     }
 
     return (
