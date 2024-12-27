@@ -80,12 +80,14 @@ export default function DepartmentForm() {
               Department Name:
             </label>
             <input
-              type='text'
-              id='name'
-              value={name}
+              type="text"
+              id="name"
+              value={selectedDepartment ? selectedDepartment.name : name}
               onChange={(e) => setName(e.target.value)}
-              className='w-full p-2 border rounded'
+              className="w-full p-2 border rounded"
+              placeholder="Enter department name"
               required
+              disabled={!!selectedDepartment}
             />
           </div>
           <div className='flex space-x-4'>
