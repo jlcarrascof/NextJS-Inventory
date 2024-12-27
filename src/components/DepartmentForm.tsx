@@ -17,6 +17,23 @@ export default function DepartmentForm() {
     const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
     const [query, setQuery] = useState('')
 
+    useEffect(() => {
+      const fetchDepartments = async () => {
+        try {
+          const response = await fetch('/api/departments')
+          if (response.ok) {
+            const data = await response.json()
+            setDepartments(data.departments)
+          } else {
+            console.error('Failed to fetch departments')
+          }
+        } catch (error) {
+          console.error('Error fetching departments:', error)
+        }
+      }
+
+      fetchDepartments()
+    }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
