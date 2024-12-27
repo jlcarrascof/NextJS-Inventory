@@ -37,9 +37,9 @@ export default function DepartmentForm() {
     }, [])
 
     const filteredDepartments =
-      query === ''
-        ? departments
-        : departments.filter((department) =>
+        query === ''
+          ? departments
+          : departments.filter((department) =>
           department.name.toLowerCase().includes(query.toLowerCase())
     )
 
