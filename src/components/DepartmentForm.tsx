@@ -73,11 +73,12 @@ export default function DepartmentForm() {
               type="text"
               id="search"
               placeholder="Type to search..."
+              value={search}
               onChange={(e) => handleSearch(e.target.value)}
               className="w-full p-2 border rounded"
             />
           </div>
-          {departments.length > 0 && (
+            {departments.length > 0 && (
             <ul className="space-y-2">
               {departments.map((department) => (
                 <li
