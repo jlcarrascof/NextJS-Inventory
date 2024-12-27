@@ -41,6 +41,18 @@ export default function DepartmentForm() {
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
           <h2 className="text-2xl font-bold">Create Department</h2>
           <div>
+            <label htmlFor="search" className="block font-medium">
+              Search Department:
+            </label>
+            <input
+              type="text"
+              id="search"
+              placeholder="Type to search..."
+              onChange={(e) => handleSearch(e.target.value)}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+          <div>
             <label htmlFor="name" className="block font-medium">
               Department Name:
             </label>
