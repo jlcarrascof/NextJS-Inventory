@@ -60,6 +60,7 @@ export default function DepartmentForm() {
         setName('')
         setSearch('')
         setSearchResults([])
+        setSearchActive(false)
     }
 
     return (
