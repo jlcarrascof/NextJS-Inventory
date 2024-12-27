@@ -38,7 +38,13 @@ export async function GET(req: Request) {
       take: limit,
     })
 
-    const total = await prisma.department.count()
+    const total = await prisma.department.count({
+      where: {
+        name: {
+          contains: search.toLowerCase(),
+        },
+      },
+    })
 
     return Response.json({ departments, total, page, limit }, { status: 200 })
   } catch (error) {
