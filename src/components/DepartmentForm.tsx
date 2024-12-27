@@ -17,6 +17,18 @@ export default function DepartmentForm() {
         return
       }
 
+      try {
+        const response = await fetch(`/api/departments?search=${query}`)
+        if (response.ok) {
+          const data = await response.json()
+          setSearchResults(data.departments)
+        } else {
+          console.error('Failed to fetch search results')
+        }
+      } catch (error) {
+        console.error('Error during search:', error)
+      }
+
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
