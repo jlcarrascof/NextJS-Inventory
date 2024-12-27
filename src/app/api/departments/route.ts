@@ -29,7 +29,11 @@ export async function GET(req: Request) {
     const limit = parseInt(url.searchParams.get('limit') || '10', 10)
 
     const departments = await prisma.department.findMany({
-
+      where: {
+        name: {
+          contains: search.toLowerCase(),
+        },
+      },
       skip: (page - 1) * limit,
       take: limit,
     })
