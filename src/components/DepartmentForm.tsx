@@ -90,6 +90,36 @@ export default function DepartmentForm() {
               disabled={!!selectedDepartment}
             />
           </div>
+          <div>
+            <label htmlFor="search" className="block font-medium">
+              Search Department:
+            </label>
+            <Combobox value={selectedDepartment} onChange={setSelectedDepartment}>
+              <div className="relative">
+                <Combobox.Input
+                  className="w-full p-2 border rounded"
+                  onChange={(e) => setQuery(e.target.value)}
+                  displayValue={(department: Department) => department?.name || ''}
+                  placeholder="Type to search..."
+                />
+                <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg">
+                  {filteredDepartments.length === 0 ? (
+                    <div className="p-2 text-gray-700">No results found</div>
+                  ) : (
+                    filteredDepartments.map((department) => (
+                      <Combobox.Option
+                        key={department.id}
+                        value={department}
+                        className="cursor-pointer select-none p-2 hover:bg-gray-200"
+                      >
+                        {department.name}
+                      </Combobox.Option>
+                    ))
+                  )}
+                </Combobox.Options>
+              </div>
+            </Combobox>
+          </div>
           <div className='flex space-x-4'>
             <button
               type='submit'
