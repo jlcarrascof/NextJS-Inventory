@@ -1,13 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
 import { Combobox } from '@headlessui/react'
+
 
 export default function DepartmentForm() {
     const [name, setName] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+    const [departments, setDepartments] = useState<Department[]>([])
+    const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
+    const [query, setQuery] = useState('')
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
