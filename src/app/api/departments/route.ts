@@ -29,6 +29,11 @@ export async function GET(req: Request) {
         const search = url.searchParams.get('search') || ''
 
         const departments = await prisma.department.findMany({
+            where: {
+                name: {
+                    contains: search,
+                },
+            },
             skip: (page - 1) * limit,
             take: limit,
         })
