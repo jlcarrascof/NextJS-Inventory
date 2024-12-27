@@ -67,6 +67,15 @@ export default function DepartmentForm() {
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
           <h2 className="text-2xl font-bold">Create Department</h2>
           <div>
+            <button
+              type="button"
+              onClick={() => setSearchActive(!searchActive)}
+              className="flex items-center bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+            >
+              <FaSearch className="mr-2" /> <span>Find</span>
+            </button>
+          </div>
+          <div>
             <label htmlFor="search" className="block font-medium">
               Search Department:
             </label>
