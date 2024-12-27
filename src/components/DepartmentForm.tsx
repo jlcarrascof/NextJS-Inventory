@@ -92,10 +92,10 @@ export default function DepartmentForm() {
           {searchResults.length > 0 && (
             <ul className="space-y-2">
               {searchResults.map((department: { id: number; name: string }) => (
-                <li key={department.id} className="p-2 border rounded bg-gray-100">
-                  {department.name}
-                </li>
-              ))}
+                  <li key={department.id} className="p-2 border rounded bg-gray-100">
+                    {department.name}
+                  </li>
+                 ))}
             </ul>
           )}
           <div>
