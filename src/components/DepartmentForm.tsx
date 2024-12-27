@@ -78,14 +78,10 @@ export default function DepartmentForm() {
               className="w-full p-2 border rounded"
             />
           </div>
-            {departments.length > 0 && (
+          {searchResults.length > 0 && (
             <ul className="space-y-2">
-              {departments.map((department) => (
-                <li
-                  key={department.id}
-                  className="p-2 border rounded bg-gray-100 cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleSelectDepartment(department)}
-                >
+              {searchResults.map((department: { id: number; name: string }) => (
+                <li key={department.id} className="p-2 border rounded bg-gray-100">
                   {department.name}
                 </li>
               ))}
