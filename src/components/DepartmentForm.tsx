@@ -75,7 +75,7 @@ export default function DepartmentForm() {
               <FaSearch className="mr-2" /> <span>Find</span>
             </button>
           </div>
-          <div>
+          <div className={`transition-all ${searchActive ? 'block' : 'hidden'}`}>
             <label htmlFor="search" className="block font-medium">
               Search Department:
             </label>
@@ -86,6 +86,7 @@ export default function DepartmentForm() {
               value={search}
               onChange={(e) => handleSearch(e.target.value)}
               className="w-full p-2 border rounded"
+              disabled={!searchActive}
             />
           </div>
           {searchResults.length > 0 && (
