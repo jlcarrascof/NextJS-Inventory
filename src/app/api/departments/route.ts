@@ -31,7 +31,7 @@ export async function GET(req: Request) {
     const departments = await prisma.department.findMany({
       where: {
         name: {
-          contains: search.toLowerCase(),
+          contains: search,
         },
       },
       skip: (page - 1) * limit,
@@ -41,7 +41,7 @@ export async function GET(req: Request) {
     const total = await prisma.department.count({
       where: {
         name: {
-          contains: search.toLowerCase(),
+          contains: search,
         },
       },
     })
