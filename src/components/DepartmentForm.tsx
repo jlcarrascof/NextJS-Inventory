@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react'
 import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
 import { Combobox } from '@headlessui/react'
 
+interface Department {
+  id: number
+  name: string
+}
 
 export default function DepartmentForm() {
     const [name, setName] = useState('')
