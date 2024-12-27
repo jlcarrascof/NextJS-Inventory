@@ -58,6 +58,8 @@ export default function DepartmentForm() {
 
     const handleCancel = () => {
         setName('')
+        setSearch('')
+        setSearchResults([])
     }
 
     return (
