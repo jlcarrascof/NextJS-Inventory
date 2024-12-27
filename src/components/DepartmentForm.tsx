@@ -16,6 +16,7 @@ export default function DepartmentForm() {
     const [departments, setDepartments] = useState<Department[]>([])
     const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
     const [query, setQuery] = useState('')
+    const [isSearchActive, setIsSearchActive] = useState(false)
 
     useEffect(() => {
       const fetchDepartments = async () => {
