@@ -29,7 +29,6 @@ export default function DepartmentForm() {
       } catch (error) {
         console.error('Error during search:', error)
       }
-
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
