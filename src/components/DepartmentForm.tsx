@@ -57,6 +57,7 @@ export default function DepartmentForm() {
           if (response.ok) {
             setMessage('Department created successfully!')
             setName('')
+            setSelectedDepartment(null)
           } else {
             setMessage('Error creating department.')
           }
