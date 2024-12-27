@@ -74,6 +74,12 @@ export default function DepartmentForm() {
         setSelectedDepartment(null)
     }
 
+    const toggleSearch = () => {
+      setIsSearchActive(!isSearchActive)
+      setSelectedDepartment(null)
+      setQuery('')
+    }
+
     return (
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
         <h2 className="text-2xl font-bold">Manage Departments</h2>
