@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { FaDatabase, FaTimes, FaFileAlt } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
+import { Combobox } from '@headlessui/react'
 
 export default function DepartmentForm() {
     const [name, setName] = useState('')
