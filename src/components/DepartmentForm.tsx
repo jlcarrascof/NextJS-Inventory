@@ -8,8 +8,8 @@ export default function DepartmentForm() {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
     const [search, setSearch] = useState('')
-    const [departments, setDepartments] = useState<Department[]>([])
-    const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
+    const [searchResults, setSearchResults] = useState([])
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
