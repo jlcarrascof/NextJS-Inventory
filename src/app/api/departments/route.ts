@@ -60,6 +60,8 @@ export async function PATCH(req: Request) {
             data: { name },
         })
 
+        return Response.json(department, { status: 200 })
+
     } catch (error) {
 
     }
