@@ -50,15 +50,17 @@ export default function DepartmentForm() {
 
         try {
 
-          const url = selectedDepartment
-            ? `/api/departments/${selectedDepartment.id}`
-            : '/api/departments'
+          const url = '/api/departments'
           const method = selectedDepartment ? 'PATCH' : 'POST'
+
+          const body = selectedDepartment
+            ? { id: selectedDepartment.id, name }
+            : { name }
 
           const response = await fetch(url, {
             method,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name }),
+            body: JSON.stringify(body),
           })
 
           if (response.ok) {
