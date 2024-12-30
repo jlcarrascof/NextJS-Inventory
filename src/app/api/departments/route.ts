@@ -48,21 +48,20 @@ export async function GET(req: Request) {
 
 export async function PATCH(req: Request) {
     try {
+      const { id, name } = await req.json()
 
-        const { id, name } = await req.json()
+      if (!id || !name) {
+        return new Response('ID and Name are required', { status: 400 })
+      }
 
-        if (!id || !name) {
-          return new Response('ID and Name are required', { status: 400 })
-        }
+      const department = await prisma.department.update({
+        where: { id: parseInt(id, 10) },
+        data: { name },
+      })
 
-        const department = await prisma.department.update({
-            where: { id },
-            data: { name },
-        })
-
-        return Response.json(department, { status: 200 })
-
+      return Response.json(department, { status: 200 })
     } catch (error) {
-        return new Response('Failed to update department', { status: 500 })
+      console.error(error)
+      return new Response('Failed to update department', { status: 500 })
     }
 }
