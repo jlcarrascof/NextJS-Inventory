@@ -55,7 +55,7 @@ export default function DepartmentForm() {
             : '/api/departments'
           const method = selectedDepartment ? 'PATCH' : 'POST'
 
-          const response = await fetch('/api/departments', {
+          const response = await fetch(url, {
             method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name }),
