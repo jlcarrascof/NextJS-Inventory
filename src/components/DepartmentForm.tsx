@@ -70,7 +70,7 @@ export default function DepartmentForm() {
             setName('')
             setSelectedDepartment(null)
           } else {
-            setMessage('Error creating department.')
+            setMessage('Error processing request.')
           }
 
         } catch (error) {
