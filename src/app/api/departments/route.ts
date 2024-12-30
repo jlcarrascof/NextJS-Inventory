@@ -63,6 +63,6 @@ export async function PATCH(req: Request) {
         return Response.json(department, { status: 200 })
 
     } catch (error) {
-
+        return new Response('Failed to update department', { status: 500 })
     }
 }
