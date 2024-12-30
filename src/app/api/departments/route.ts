@@ -45,3 +45,11 @@ export async function GET(req: Request) {
         return new Response('Failed to fetch departments', { status: 500 })
     }
 }
+
+export async function PATCH(req: Request) {
+    try {
+
+    } catch (error) {
+
+    }
+}
