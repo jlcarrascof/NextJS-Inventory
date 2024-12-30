@@ -55,6 +55,11 @@ export async function PATCH(req: Request) {
           return new Response('ID and Name are required', { status: 400 })
         }
 
+        const department = await prisma.department.update({
+            where: { id },
+            data: { name },
+        })
+
     } catch (error) {
 
     }
