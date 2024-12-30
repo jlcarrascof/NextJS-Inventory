@@ -146,7 +146,15 @@ export default function DepartmentForm() {
           disabled={loading}
           >
             <FaDatabase className="mr-2" />
-            <span>{loading ? 'Creating ...' : 'Create'}</span>
+            <span>
+              {loading
+                ? selectedDepartment
+                ? 'Updating ...'
+                : 'Creating ...'
+                : selectedDepartment
+                ? 'Update'
+                : 'Create'}
+            </span>
           </button>
           <button
             onClick={handleCancel}
