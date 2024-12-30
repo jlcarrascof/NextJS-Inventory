@@ -101,7 +101,10 @@ export default function DepartmentForm() {
             <label htmlFor="search" className="block font-medium">
               Search Department:
             </label>
-            <Combobox value={selectedDepartment} onChange={setSelectedDepartment}>
+            <Combobox value={selectedDepartment} onChange={(department) => {
+              setSelectedDepartment(department)
+              setName(department?.name || '') // Pre-fill the name field
+            }}>
               <div className="relative">
                 <Combobox.Input
                   className="w-full p-2 border rounded"
@@ -142,7 +145,6 @@ export default function DepartmentForm() {
             className="w-full p-2 border rounded"
             placeholder="Enter department name"
             required
-            disabled={!!selectedDepartment}
           />
         </div>
 
