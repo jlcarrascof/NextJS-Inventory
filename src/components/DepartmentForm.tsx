@@ -140,7 +140,7 @@ export default function DepartmentForm() {
           <input
             type="text"
             id="name"
-            value={selectedDepartment ? selectedDepartment.name : name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full p-2 border rounded"
             placeholder="Enter department name"
