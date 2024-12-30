@@ -142,6 +142,7 @@ export default function DepartmentForm() {
             className="w-full p-2 border rounded"
             placeholder="Enter department name"
             required
+            disabled={!!selectedDepartment}
           />
         </div>
 
