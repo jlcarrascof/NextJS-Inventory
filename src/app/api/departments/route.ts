@@ -49,6 +49,12 @@ export async function GET(req: Request) {
 export async function PATCH(req: Request) {
     try {
 
+        const { id, name } = await req.json()
+
+        if (!id || !name) {
+          return new Response('ID and Name are required', { status: 400 })
+        }
+
     } catch (error) {
 
     }
