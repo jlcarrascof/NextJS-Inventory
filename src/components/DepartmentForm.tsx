@@ -136,10 +136,14 @@ export default function DepartmentForm() {
 
         {/* Action Buttons */}
         <div className="flex space-x-4">
-          <button
-            type="submit"
-            className="flex items-center bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            disabled={loading}
+        <button
+          type="submit"
+          className={`flex items-center ${
+          selectedDepartment
+          ? 'bg-yellow-500 hover:bg-yellow-600'
+          : 'bg-green-600 hover:bg-green-700'
+          } text-white px-4 py-2 rounded`}
+          disabled={loading}
           >
             <FaDatabase className="mr-2" />
             <span>{loading ? 'Creating ...' : 'Create'}</span>
