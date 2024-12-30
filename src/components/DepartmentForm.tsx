@@ -86,6 +86,7 @@ export default function DepartmentForm() {
             )
             setName('')
             setSelectedDepartment(null)
+            await refreshDepartments()
           } else {
             setMessage('Error processing request.')
           }
