@@ -43,6 +43,21 @@ export default function DepartmentForm() {
           department.name.toLowerCase().includes(query.toLowerCase())
     )
 
+
+    const refreshDepartments = async () => {
+      try {
+        const response = await fetch('/api/departments')
+        if (response.ok) {
+          const data = await response.json()
+          setDepartments(data.departments)
+        } else {
+          console.error('Failed to refresh departments')
+        }
+      } catch (error) {
+        console.error('Error refreshing departments:', error)
+      }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
