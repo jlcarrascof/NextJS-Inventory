@@ -49,6 +49,12 @@ export default function DepartmentForm() {
         setMessage('')
 
         try {
+
+          const url = selectedDepartment
+            ? `/api/departments/${selectedDepartment.id}`
+            : '/api/departments'
+          const method = selectedDepartment ? 'PATCH' : 'POST'
+
           const response = await fetch('/api/departments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
