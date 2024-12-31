@@ -45,3 +45,23 @@ export async function GET(req: Request) {
         return new Response('Failed to fetch departments', { status: 500 })
     }
 }
+
+export async function PATCH(req: Request) {
+    try {
+      const { id, name } = await req.json();
+
+      if (!id || !name) {
+        return new Response('ID and Name are required', { status: 400 });
+      }
+
+      const department = await prisma.department.update({
+        where: { id: parseInt(id, 10) },
+        data: { name },
+      });
+
+      return Response.json(department, { status: 200 });
+    } catch (error) {
+      console.error(error);
+      return new Response('Failed to update department', { status: 500 });
+    }
+}

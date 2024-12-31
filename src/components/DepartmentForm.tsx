@@ -43,25 +43,54 @@ export default function DepartmentForm() {
           department.name.toLowerCase().includes(query.toLowerCase())
     )
 
+
+    const refreshDepartments = async () => {
+      try {
+        const response = await fetch('/api/departments')
+        if (response.ok) {
+          const data = await response.json()
+          setDepartments(data.departments)
+        } else {
+          console.error('Failed to refresh departments')
+        }
+      } catch (error) {
+        console.error('Error refreshing departments:', error)
+      }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
         setMessage('')
 
         try {
-          const response = await fetch('/api/departments', {
-            method: 'POST',
+
+          const url = '/api/departments'
+          const method = selectedDepartment ? 'PATCH' : 'POST'
+
+          const body = selectedDepartment
+            ? { id: selectedDepartment.id, name }
+            : { name }
+
+          const response = await fetch(url, {
+            method,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name }),
+            body: JSON.stringify(body),
           })
 
           if (response.ok) {
-            setMessage('Department created successfully!')
+            setMessage(
+              selectedDepartment
+                ? 'Department updated successfully!'
+                : 'Department created successfully!'
+            )
             setName('')
             setSelectedDepartment(null)
+            await refreshDepartments()
           } else {
-            setMessage('Error creating department.')
+            setMessage('Error processing request.')
           }
+
         } catch (error) {
           setMessage('Something went wrong.')
         } finally {
@@ -90,7 +119,10 @@ export default function DepartmentForm() {
             <label htmlFor="search" className="block font-medium">
               Search Department:
             </label>
-            <Combobox value={selectedDepartment} onChange={setSelectedDepartment}>
+            <Combobox value={selectedDepartment} onChange={(department) => {
+              setSelectedDepartment(department)
+              setName(department?.name || '') // Pre-fill the name field
+            }}>
               <div className="relative">
                 <Combobox.Input
                   className="w-full p-2 border rounded"
@@ -126,7 +158,7 @@ export default function DepartmentForm() {
           <input
             type="text"
             id="name"
-            value={selectedDepartment ? selectedDepartment.name : name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full p-2 border rounded"
             placeholder="Enter department name"
@@ -136,13 +168,25 @@ export default function DepartmentForm() {
 
         {/* Action Buttons */}
         <div className="flex space-x-4">
-          <button
-            type="submit"
-            className="flex items-center bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-            disabled={loading}
+        <button
+          type="submit"
+          className={`flex items-center ${
+          selectedDepartment
+          ? 'bg-yellow-500 hover:bg-yellow-600'
+          : 'bg-green-600 hover:bg-green-700'
+          } text-white px-4 py-2 rounded`}
+          disabled={loading}
           >
             <FaDatabase className="mr-2" />
-            <span>{loading ? 'Creating ...' : 'Create'}</span>
+            <span>
+              {loading
+                ? selectedDepartment
+                ? 'Updating ...'
+                : 'Creating ...'
+                : selectedDepartment
+                ? 'Update'
+                : 'Create'}
+            </span>
           </button>
           <button
             onClick={handleCancel}
