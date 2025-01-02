@@ -65,3 +65,11 @@ export async function PATCH(req: Request) {
       return new Response('Failed to update department', { status: 500 });
     }
 }
+
+export async function DELETE(req: Request) {
+    try {
+
+    } catch (error) {
+        
+    }
+}
