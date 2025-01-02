@@ -233,7 +233,12 @@ export default function DepartmentForm() {
             <span>Cancel</span>
           </button>
           <button
-
+            type="button"
+            onClick={handleDelete}
+            className={`flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${
+                !selectedDepartment ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={!selectedDepartment || loading}
           >
 
           </button>
