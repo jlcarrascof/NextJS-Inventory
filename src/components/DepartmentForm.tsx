@@ -78,6 +78,14 @@ export default function DepartmentForm() {
           headers: { 'Content-Type': 'application/json' },
         })
 
+        if (response.ok) {
+          setMessage('Department deleted successfully!')
+          setSelectedDepartment(null)
+          setName('')
+          await refreshDepartments()
+        } else {
+          setMessage('Error deleting department.')
+        }
 
       } catch (error) {
 
