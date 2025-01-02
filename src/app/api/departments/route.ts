@@ -75,6 +75,16 @@ export async function DELETE(req: Request) {
             return new Response('ID is required', { status: 400 });
         }
 
+        // validating future relationships
+        const relatedProductsCount = await prisma.product.count({
+            where: { departmentId: parseInt(id, 10) },
+        });
+
+        if (relatedProductsCount > 0) {
+            return new Response('Cannot delete department with related products.', { status: 400 });
+        }
+
+
     } catch (error) {
 
     }
