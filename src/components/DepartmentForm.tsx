@@ -71,6 +71,14 @@ export default function DepartmentForm() {
       setLoading(true)
       setMessage('')
 
+      try {
+
+      } catch (error) {
+
+      } finally {
+
+      }
+
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
