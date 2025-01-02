@@ -69,7 +69,13 @@ export async function PATCH(req: Request) {
 export async function DELETE(req: Request) {
     try {
 
+        const { id } = await req.json();
+
+        if (!id) {
+            return new Response('ID is required', { status: 400 });
+        }
+
     } catch (error) {
-        
+
     }
 }
