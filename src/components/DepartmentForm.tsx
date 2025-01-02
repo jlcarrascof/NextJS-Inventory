@@ -24,6 +24,21 @@ export default function DepartmentForm() {
     }, [query])
 
 
+    const fetchDepartments = async (search: string) => {
+      try {
+        const url = search ? `/api/departments?search=${search}` : '/api/departments'
+        const response = await fetch(url)
+        if (response.ok) {
+          const data = await response.json()
+          setDepartments(data.departments)
+        } else {
+          console.error('Failed to fetch departments')
+        }
+      } catch (error) {
+        console.error('Error fetching departments:', error)
+      }
+    }
+
     const refreshDepartments = async () => {
       try {
         const response = await fetch('/api/departments')
