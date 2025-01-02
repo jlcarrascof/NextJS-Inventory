@@ -58,6 +58,10 @@ export default function DepartmentForm() {
       }
     }
 
+    const handleDelete = async () => {
+
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
