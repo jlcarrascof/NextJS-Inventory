@@ -54,40 +54,37 @@ export default function DepartmentForm() {
     }
 
     const handleDelete = async () => {
-
-      if (!selectedDepartment) return
+      if (!selectedDepartment) return;
 
       const confirmDelete = window.confirm(
           `Are you sure you want to delete the department: ${selectedDepartment.name}?`
-      )
+      );
 
-      if (!confirmDelete) return
+      if (!confirmDelete) return;
 
-      setLoading(true)
-      setMessage('')
+      setLoading(true);
+      setMessage('');
 
       try {
+          const response = await fetch(`/api/departments`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: selectedDepartment.id }),
+          })
 
-        const response = await fetch(`/api/departments/${selectedDepartment.id}`, {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-        })
-
-        if (response.ok) {
-          setMessage('Department deleted successfully!')
-          setSelectedDepartment(null)
-          setName('')
-          await refreshDepartments()
-        } else {
-          setMessage('Error deleting department.')
-        }
-
+          if (response.ok) {
+              setMessage('Department deleted successfully!')
+              setSelectedDepartment(null)
+              setName('')
+              await refreshDepartments()
+          } else {
+              setMessage('Error deleting department.')
+          }
       } catch (error) {
-        setMessage('Something went wrong.')
+          setMessage('Something went wrong.')
       } finally {
-        setLoading(false)
+          setLoading(false)
       }
-
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
