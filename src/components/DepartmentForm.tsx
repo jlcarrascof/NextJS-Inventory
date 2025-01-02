@@ -162,11 +162,11 @@ export default function DepartmentForm() {
                   displayValue={(department: Department) => department?.name || ''}
                   placeholder="Type to search..."
                 />
-                <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg">
-                  {filteredDepartments.length === 0 ? (
+                <Combobox.Options className="absolute z-10 mt-1 max-h-60  w-full overflow-auto bg-white border rounded shadow-lg">
+                  {departments.length === 0 ? (
                     <div className="p-2 text-gray-700">No results found</div>
                   ) : (
-                    filteredDepartments.map((department) => (
+                    departments.map((department: Department) => (
                       <Combobox.Option
                         key={department.id}
                         value={department}
@@ -175,8 +175,8 @@ export default function DepartmentForm() {
                         {department.name}
                       </Combobox.Option>
                     ))
-                  )}
-                </Combobox.Options>
+                    )}
+                  </Combobox.Options>
               </div>
             </Combobox>
           </div>
