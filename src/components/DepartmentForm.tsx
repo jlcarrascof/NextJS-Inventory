@@ -60,6 +60,12 @@ export default function DepartmentForm() {
 
     const handleDelete = async () => {
 
+      if (!selectedDepartment) return
+
+      const confirmDelete = window.confirm(
+          `Are you sure you want to delete the department: ${selectedDepartment.name}?`
+      )
+
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
