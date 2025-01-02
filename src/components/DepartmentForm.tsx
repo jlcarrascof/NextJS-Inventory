@@ -240,7 +240,8 @@ export default function DepartmentForm() {
             }`}
             disabled={!selectedDepartment || loading}
           >
-
+            <FaTrash className="mr-2" />
+            <span>{loading ? 'Deleting...' : 'Delete'}</span>
           </button>
           <button
             type="button"
