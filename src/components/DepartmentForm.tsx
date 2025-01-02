@@ -73,6 +73,12 @@ export default function DepartmentForm() {
 
       try {
 
+        const response = await fetch(`/api/departments/${selectedDepartment.id}`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+        })
+
+
       } catch (error) {
 
       } finally {
