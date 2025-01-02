@@ -90,6 +90,7 @@ export async function DELETE(req: Request) {
 
         return Response.json(department, { status: 200 })
     } catch (error) {
-
+        console.error(error)
+        return new Response('Failed to delete department', { status: 500 })
     }
 }
