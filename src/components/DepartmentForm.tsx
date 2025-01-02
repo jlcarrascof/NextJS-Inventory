@@ -88,9 +88,9 @@ export default function DepartmentForm() {
         }
 
       } catch (error) {
-
+        setMessage('Something went wrong.')
       } finally {
-
+        setLoading(false)
       }
 
     }
