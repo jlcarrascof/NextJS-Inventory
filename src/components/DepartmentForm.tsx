@@ -66,6 +66,11 @@ export default function DepartmentForm() {
           `Are you sure you want to delete the department: ${selectedDepartment.name}?`
       )
 
+      if (!confirmDelete) return
+
+      setLoading(true)
+      setMessage('')
+
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
