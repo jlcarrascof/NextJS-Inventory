@@ -18,31 +18,6 @@ export default function DepartmentForm() {
     const [query, setQuery] = useState('')
     const [isSearchActive, setIsSearchActive] = useState(false)
 
-    useEffect(() => {
-      const fetchDepartments = async () => {
-        try {
-          const response = await fetch('/api/departments')
-          if (response.ok) {
-            const data = await response.json()
-            setDepartments(data.departments)
-          } else {
-            console.error('Failed to fetch departments')
-          }
-        } catch (error) {
-          console.error('Error fetching departments:', error)
-        }
-      }
-
-      fetchDepartments()
-    }, [])
-
-    const filteredDepartments =
-        query === ''
-          ? departments
-          : departments.filter((department) =>
-          department.name.toLowerCase().includes(query.toLowerCase())
-    )
-
 
     const refreshDepartments = async () => {
       try {
