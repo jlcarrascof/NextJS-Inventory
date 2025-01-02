@@ -19,6 +19,11 @@ export default function DepartmentForm() {
     const [isSearchActive, setIsSearchActive] = useState(false)
 
 
+    useEffect(() => {
+      fetchDepartments(query)
+    }, [query])
+
+
     const refreshDepartments = async () => {
       try {
         const response = await fetch('/api/departments')
