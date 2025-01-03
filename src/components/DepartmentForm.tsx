@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaFileAlt, FaSearch, FaTrash } from 'react-icons/fa'
 import { Combobox } from '@headlessui/react'
 
 interface Department {
@@ -18,31 +18,26 @@ export default function DepartmentForm() {
     const [query, setQuery] = useState('')
     const [isSearchActive, setIsSearchActive] = useState(false)
 
+
     useEffect(() => {
-      const fetchDepartments = async () => {
-        try {
-          const response = await fetch('/api/departments')
-          if (response.ok) {
-            const data = await response.json()
-            setDepartments(data.departments)
-          } else {
-            console.error('Failed to fetch departments')
-          }
-        } catch (error) {
-          console.error('Error fetching departments:', error)
+      fetchDepartments(query)
+    }, [query])
+
+
+    const fetchDepartments = async (search: string) => {
+      try {
+        const url = search ? `/api/departments?search=${search}` : '/api/departments'
+        const response = await fetch(url)
+        if (response.ok) {
+          const data = await response.json()
+          setDepartments(data.departments)
+        } else {
+          console.error('Failed to fetch departments')
         }
+      } catch (error) {
+        console.error('Error fetching departments:', error)
       }
-
-      fetchDepartments()
-    }, [])
-
-    const filteredDepartments =
-        query === ''
-          ? departments
-          : departments.filter((department) =>
-          department.name.toLowerCase().includes(query.toLowerCase())
-    )
-
+    }
 
     const refreshDepartments = async () => {
       try {
@@ -55,6 +50,40 @@ export default function DepartmentForm() {
         }
       } catch (error) {
         console.error('Error refreshing departments:', error)
+      }
+    }
+
+    const handleDelete = async () => {
+      if (!selectedDepartment) return;
+
+      const confirmDelete = window.confirm(
+          `Are you sure you want to delete the department: ${selectedDepartment.name}?`
+      );
+
+      if (!confirmDelete) return;
+
+      setLoading(true);
+      setMessage('');
+
+      try {
+          const response = await fetch(`/api/departments`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: selectedDepartment.id }),
+          })
+
+          if (response.ok) {
+              setMessage('Department deleted successfully!')
+              setSelectedDepartment(null)
+              setName('')
+              await refreshDepartments()
+          } else {
+              setMessage('Error deleting department.')
+          }
+      } catch (error) {
+          setMessage('Something went wrong.')
+      } finally {
+          setLoading(false)
       }
     }
 
@@ -130,11 +159,11 @@ export default function DepartmentForm() {
                   displayValue={(department: Department) => department?.name || ''}
                   placeholder="Type to search..."
                 />
-                <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg">
-                  {filteredDepartments.length === 0 ? (
+                <Combobox.Options className="absolute z-10 mt-1 max-h-60  w-full overflow-auto bg-white border rounded shadow-lg">
+                  {departments.length === 0 ? (
                     <div className="p-2 text-gray-700">No results found</div>
                   ) : (
-                    filteredDepartments.map((department) => (
+                    departments.map((department: Department) => (
                       <Combobox.Option
                         key={department.id}
                         value={department}
@@ -143,8 +172,8 @@ export default function DepartmentForm() {
                         {department.name}
                       </Combobox.Option>
                     ))
-                  )}
-                </Combobox.Options>
+                    )}
+                  </Combobox.Options>
               </div>
             </Combobox>
           </div>
@@ -194,6 +223,17 @@ export default function DepartmentForm() {
           >
             <FaTimes className="mr-2" />
             <span>Cancel</span>
+          </button>
+          <button
+            type="button"
+            onClick={handleDelete}
+            className={`flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${
+                !selectedDepartment ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+            disabled={!selectedDepartment || loading}
+          >
+            <FaTrash className="mr-2" />
+            <span>{loading ? 'Deleting...' : 'Delete'}</span>
           </button>
           <button
             type="button"
