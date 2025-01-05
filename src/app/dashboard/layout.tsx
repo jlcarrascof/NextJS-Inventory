@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname()
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen">
       {/* Button for small screens */}
       <button
         onClick={() => setIsOpen(!isOpen)}
