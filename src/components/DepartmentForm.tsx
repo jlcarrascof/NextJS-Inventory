@@ -190,7 +190,7 @@ export default function DepartmentForm() {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter department name"
               required
             />
