@@ -197,7 +197,7 @@ export default function DepartmentForm() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-4">
+          <div className="flex flex-wrap justify-center gap-4">
           <button
             type="submit"
             className={`flex items-center ${
