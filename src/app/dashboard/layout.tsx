@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname()
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen">
       {/* Button for small screens */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -68,7 +68,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </ul>
         </nav>
       </aside>
-      <main className="flex-grow p-4">{children}</main>
+      <main className="flex-grow overflow-y-auto p-4 bg-gray-100">
+        {children}
+      </main>
     </div>
   )
 }
