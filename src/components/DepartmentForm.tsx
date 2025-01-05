@@ -139,120 +139,122 @@ export default function DepartmentForm() {
     }
 
     return (
-      <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
-        <h2 className="text-2xl font-bold">Manage Departments</h2>
+      <div>
+        <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow">
+          <h2 className="text-2xl font-bold">Manage Departments</h2>
 
-        {/* Combobox for search */}
-        {isSearchActive && (
+          {/* Combobox for search */}
+          {isSearchActive && (
+            <div>
+              <label htmlFor="search" className="block font-medium">
+                Search Department:
+              </label>
+              <Combobox value={selectedDepartment} onChange={(department) => {
+                setSelectedDepartment(department)
+                setName(department?.name || '') // Pre-fill the name field
+              }}>
+                <div className="relative">
+                  <Combobox.Input
+                    className="w-full p-2 border rounded"
+                    onChange={(e) => setQuery(e.target.value)}
+                    displayValue={(department: Department) => department?.name || ''}
+                    placeholder="Type to search..."
+                  />
+                  <Combobox.Options className="absolute z-10 mt-1 max-h-60  w-full overflow-auto bg-white border rounded shadow-lg">
+                    {departments.length === 0 ? (
+                      <div className="p-2 text-gray-700">No results found</div>
+                    ) : (
+                      departments.map((department: Department) => (
+                        <Combobox.Option
+                          key={department.id}
+                          value={department}
+                          className="cursor-pointer select-none p-2 hover:bg-gray-200"
+                        >
+                          {department.name}
+                        </Combobox.Option>
+                      ))
+                      )}
+                    </Combobox.Options>
+                </div>
+              </Combobox>
+            </div>
+          )}
+
+          {/* Department Name */}
           <div>
-            <label htmlFor="search" className="block font-medium">
-              Search Department:
+            <label htmlFor="name" className="block font-medium">
+              Department Name:
             </label>
-            <Combobox value={selectedDepartment} onChange={(department) => {
-              setSelectedDepartment(department)
-              setName(department?.name || '') // Pre-fill the name field
-            }}>
-              <div className="relative">
-                <Combobox.Input
-                  className="w-full p-2 border rounded"
-                  onChange={(e) => setQuery(e.target.value)}
-                  displayValue={(department: Department) => department?.name || ''}
-                  placeholder="Type to search..."
-                />
-                <Combobox.Options className="absolute z-10 mt-1 max-h-60  w-full overflow-auto bg-white border rounded shadow-lg">
-                  {departments.length === 0 ? (
-                    <div className="p-2 text-gray-700">No results found</div>
-                  ) : (
-                    departments.map((department: Department) => (
-                      <Combobox.Option
-                        key={department.id}
-                        value={department}
-                        className="cursor-pointer select-none p-2 hover:bg-gray-200"
-                      >
-                        {department.name}
-                      </Combobox.Option>
-                    ))
-                    )}
-                  </Combobox.Options>
-              </div>
-            </Combobox>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-2 border rounded"
+              placeholder="Enter department name"
+              required
+            />
           </div>
-        )}
 
-        {/* Department Name */}
-        <div>
-          <label htmlFor="name" className="block font-medium">
-            Department Name:
-          </label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border rounded"
-            placeholder="Enter department name"
-            required
-          />
-        </div>
+          {/* Action Buttons */}
+          <div className="flex space-x-4">
+          <button
+            type="submit"
+            className={`flex items-center ${
+            selectedDepartment
+            ? 'bg-yellow-500 hover:bg-yellow-600'
+            : 'bg-green-600 hover:bg-green-700'
+            } text-white px-4 py-2 rounded`}
+            disabled={loading}
+            >
+              <FaDatabase className="mr-2" />
+              <span>
+                {loading
+                  ? selectedDepartment
+                  ? 'Updating ...'
+                  : 'Creating ...'
+                  : selectedDepartment
+                  ? 'Update'
+                  : 'Create'}
+              </span>
+            </button>
+            <button
+              onClick={handleCancel}
+              className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+              <FaTimes className="mr-2" />
+              <span>Cancel</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleDelete}
+              className={`flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${
+                  !selectedDepartment ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+              disabled={!selectedDepartment || loading}
+            >
+              <FaTrash className="mr-2" />
+              <span>{loading ? 'Deleting...' : 'Delete'}</span>
+            </button>
+            <button
+              type="button"
+              onClick={toggleSearch}
+              className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+            >
+              <FaSearch className="mr-2" />
+              <span>{isSearchActive ? 'Close Search' : 'Find'}</span>
+            </button>
+            <button
+              onClick={() => window.location.href = '/dashboard/departments/list'}
+              className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              <FaFileAlt className="mr-2" />
+              <span>View List</span>
+            </button>
+          </div>
 
-        {/* Action Buttons */}
-        <div className="flex space-x-4">
-        <button
-          type="submit"
-          className={`flex items-center ${
-          selectedDepartment
-          ? 'bg-yellow-500 hover:bg-yellow-600'
-          : 'bg-green-600 hover:bg-green-700'
-          } text-white px-4 py-2 rounded`}
-          disabled={loading}
-          >
-            <FaDatabase className="mr-2" />
-            <span>
-              {loading
-                ? selectedDepartment
-                ? 'Updating ...'
-                : 'Creating ...'
-                : selectedDepartment
-                ? 'Update'
-                : 'Create'}
-            </span>
-          </button>
-          <button
-            onClick={handleCancel}
-            className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            <FaTimes className="mr-2" />
-            <span>Cancel</span>
-          </button>
-          <button
-            type="button"
-            onClick={handleDelete}
-            className={`flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${
-                !selectedDepartment ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
-            disabled={!selectedDepartment || loading}
-          >
-            <FaTrash className="mr-2" />
-            <span>{loading ? 'Deleting...' : 'Delete'}</span>
-          </button>
-          <button
-            type="button"
-            onClick={toggleSearch}
-            className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-          >
-            <FaSearch className="mr-2" />
-            <span>{isSearchActive ? 'Close Search' : 'Find'}</span>
-          </button>
-          <button
-            onClick={() => window.location.href = '/dashboard/departments/list'}
-            className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            <FaFileAlt className="mr-2" />
-            <span>View List</span>
-          </button>
-        </div>
-
-        {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
-      </form>
+          {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
+        </form>
+      </div>
     )
 }
