@@ -139,7 +139,7 @@ export default function DepartmentForm() {
     }
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
           <h2 className="text-2xl font-bold">Manage Departments</h2>
 
