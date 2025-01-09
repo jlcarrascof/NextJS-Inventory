@@ -28,6 +28,8 @@ async function main() {
             { name: 'Tools Supplier', contact: 'supplier-tools@gmail.com' },
             { name: 'Global Electronics Inc.', contact: 'johndoe@globalelectronics.com', address:'123 Tech Park, Silicon Valley, CA', phone: '+1-555-123-4567',               country: 'United States',
             },
+            { name: 'Innovative Supplies Ltd.', contact: 'janesmith@innovativesupplies.ca', address: '456 Industrial Ave, Toronto, ON', phone: '+1-416-555-7890',                country: 'Canada',
+            },
         ],
     })
 
