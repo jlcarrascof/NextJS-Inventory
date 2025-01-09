@@ -26,6 +26,8 @@ async function main() {
         data: [
             { name: 'Paints Supplier', contact: 'supplier-paints@gmail.com' },
             { name: 'Tools Supplier', contact: 'supplier-tools@gmail.com' },
+            { name: 'Global Electronics Inc.', contact: 'johndoe@globalelectronics.com', address:'123 Tech Park, Silicon Valley, CA', phone: '+1-555-123-4567',               country: 'United States',
+            },
         ],
     })
 
