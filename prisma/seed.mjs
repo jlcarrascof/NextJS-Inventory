@@ -32,6 +32,12 @@ async function main() {
             },
             { name: 'Tech Solutions GmbH', contact: 'hansmuller@techsolutions.ger.com', address: '789 Innovation Strasse, Berlin', phone: '+49-30-123-4567',              country: 'Germany',
             },
+            { name: 'FutureWare Pvt. Ltd.', contact: 'amitpatel@futureware.in', address: '101 IT Hub, Bengaluru, Karnataka',           phone: '+91-80-555-6789', country: 'India',
+            },
+            { name: 'GreenTech Co.', contact: 'emmawilson@greentech.au',
+              address: '202 Eco Lane, Sydney, NSW', phone: '+61-2-555-3456',
+            country: 'Australia',
+            },
         ],
     })
 
