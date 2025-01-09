@@ -30,6 +30,8 @@ async function main() {
             },
             { name: 'Innovative Supplies Ltd.', contact: 'janesmith@innovativesupplies.ca', address: '456 Industrial Ave, Toronto, ON', phone: '+1-416-555-7890',                country: 'Canada',
             },
+            { name: 'Tech Solutions GmbH', contact: 'hansmuller@techsolutions.ger.com', address: '789 Innovation Strasse, Berlin', phone: '+49-30-123-4567',              country: 'Germany',
+            },
         ],
     })
 
