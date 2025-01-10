@@ -51,4 +51,14 @@ export default function SupplierForm() {
           setLoading(false)
         }
     }
+
+    const handleCancel = () => {
+        setSupplier({
+          name: '',
+          contact: '',
+          address: '',
+          phone: '',
+          country: '',
+        })
+    }
 }
