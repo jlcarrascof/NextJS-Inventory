@@ -11,5 +11,13 @@ interface Supplier {
 }
 
 export default function SupplierForm() {
-
+    const [supplier, setSupplier] = useState<Supplier>({
+        name: '',
+        contact: '',
+        address: '',
+        phone: '',
+        country: '',
+      })
+    const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState('')
 }
