@@ -54,14 +54,14 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </li>
             <li>
               <a
-                href="/dashboard/products"
+                href="/dashboard/suppliers"
                 className={`flex items-center space-x-2 p-2 rounded hover:bg-green-400 ${
-                pathname === '/dashboard/products' ? 'bg-green-400 text-white' : ''
+                pathname === '/dashboard/suppliers' ? 'bg-green-400 text-white' : ''
                 }`}
               >
                 <FaBox />
                 <div className="px-2">
-                  Products
+                  Suppliers
                 </div>
               </a>
             </li>
