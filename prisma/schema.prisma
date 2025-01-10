@@ -17,6 +17,9 @@ model Supplier {
   id        Int       @id @default(autoincrement())
   name      String    @unique
   contact   String?
+  address   String?   // Supplier Address
+  phone     String?   // Supplier Phone
+  country   String?   // Supplier Country
   products  Product[] // Relationship 1:N with Product
 }
 

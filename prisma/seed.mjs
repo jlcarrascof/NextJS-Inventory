@@ -26,6 +26,16 @@ async function main() {
         data: [
             { name: 'Paints Supplier', contact: 'supplier-paints@gmail.com' },
             { name: 'Tools Supplier', contact: 'supplier-tools@gmail.com' },
+            { name: 'Global Electronics Inc.', contact: 'johndoe@globalelectronics.com', address:'123 Tech Park, Silicon Valley, CA', phone: '+1-555-123-4567', country: 'United States',
+            },
+            { name: 'Innovative Supplies Ltd.', contact: 'janesmith@innovativesupplies.ca', address: '456 Industrial Ave, Toronto, ON', phone: '+1-416-555-7890', country: 'Canada',
+            },
+            { name: 'Tech Solutions GmbH', contact: 'hansmuller@techsolutions.ger.com', address: '789 Innovation Strasse, Berlin', phone: '+49-30-123-4567', country: 'Germany',
+            },
+            { name: 'FutureWare Pvt. Ltd.', contact: 'amitpatel@futureware.in', address: '101 IT Hub, Bengaluru, Karnataka', phone: '+91-80-555-6789', country: 'India',
+            },
+            { name: 'GreenTech Co.', contact: 'emmawilson@greentech.au', address: '202 Eco Lane, Sydney, NSW', phone: '+61-2-555-3456', country: 'Australia',
+            },
         ],
     })
 
