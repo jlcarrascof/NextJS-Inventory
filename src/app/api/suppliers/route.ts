@@ -18,6 +18,7 @@ export async function POST(req: Request) {
         return Response.json(supplier, { status: 201 });
 
     } catch (error) {
-
+        console.error(error);
+        return new Response('Failed to create supplier', { status: 500 });
     }
 }
