@@ -163,6 +163,13 @@ export default function SupplierForm() {
                 <FaTimes className="mr-2" />
                 <span>Cancel</span>
               </button>
+              <button
+                onClick={() => window.location.href = '/dashboard/departments/list'}
+                className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                <FaFileAlt className="mr-2" />
+                <span>View List</span>
+              </button>
             </div>
 
             {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
