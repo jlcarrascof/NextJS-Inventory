@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { FaDatabase, FaTimes } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaFileAlt } from 'react-icons/fa'
 
 interface Supplier {
     name: string
