@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaDatabase, FaTimes, FaFileAlt } from 'react-icons/fa'
 
 interface Supplier {
@@ -21,6 +21,10 @@ export default function SupplierForm() {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
     const [query, setQuery] = useState('')
+
+    useEffect(() => {
+      fetchSuppliers(query)
+    }, [query])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
