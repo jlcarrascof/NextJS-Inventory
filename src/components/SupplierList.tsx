@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 interface Supplier {
+    id: number,
     name: string
     contact: string
     address: string
@@ -11,41 +12,42 @@ interface Supplier {
     country: string
 }
 
-export default function DepartmentList() {
+export default function SupplierList() {
 
-    const [departments, setDepartments] = useState<Department[]>([]);    const [loading, setLoading] = useState(true)
+    const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+    const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const limit = 10
 
     useEffect(() => {
-        const fetchDepartments = async () => {
+        const fetchSuppliers = async () => {
           setLoading(true)
           try {
-            const response = await fetch(`/api/departments?page=${page}&limit=${limit}`)
+            const response = await fetch(`/api/suppliers?page=${page}&limit=${limit}`)
             if (response.ok) {
               const data = await response.json()
-              setDepartments(data.departments)
+              setSuppliers(data.suppliers)
               setTotalPages(Math.ceil(data.total / limit))
             } else {
-              console.error('Failed to fetch departments')
+              console.error('Failed to fetch suppliers')
             }
           } catch (error) {
-            console.error('Error fetching departments:', error)
+            console.error('Error fetching suppliers:', error)
           } finally {
             setLoading(false)
           }
         }
 
-        fetchDepartments()
+        fetchSuppliers()
     }, [page])
 
     if (loading) {
         return <p>Loading...</p>
     }
 
-    if (departments.length === 0) {
-        return <p>No departments found.</p>
+    if (suppliers.length === 0) {
+        return <p>No suppliers found.</p>
     }
 
     const handleNext = () => {
@@ -58,11 +60,11 @@ export default function DepartmentList() {
 
     return (
         <div>
-          <h2 className="text-2xl font-bold mb-4">Departments List</h2>
+          <h2 className="text-2xl font-bold mb-4">Suppliers List</h2>
           <ul className="space-y-2">
-            {departments.map((department) => (
-              <li key={department.id} className="p-2 border rounded bg-gray-100">
-                {department.name}
+            {suppliers.map((supplier) => (
+              <li key={supplier.id} className="p-2 border rounded bg-gray-100">
+                {supplier.name}
               </li>
             ))}
           </ul>
@@ -86,7 +88,7 @@ export default function DepartmentList() {
             </button>
           </div>
           <button
-            onClick={() => window.location.href = '/dashboard/departments'}
+            onClick={() => window.location.href = '/dashboard/suppliers'}
             className="mt-4 flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
             <FaArrowLeft className="mr-2" /> <span>Back to Form</span>
