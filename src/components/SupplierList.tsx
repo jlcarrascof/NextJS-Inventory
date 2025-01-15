@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
-interface Department {
-    id: number
+interface Supplier {
     name: string
+    contact: string
+    address: string
+    phone: string
+    country: string
 }
 
 export default function DepartmentList() {
