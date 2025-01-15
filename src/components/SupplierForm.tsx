@@ -26,6 +26,21 @@ export default function SupplierForm() {
       fetchSuppliers(query)
     }, [query])
 
+    const fetchSuppliers = async (search: string) => {
+      try {
+        const url = search ? `/api/suppliers?search=${search}` : '/api/suppliers'
+        const response = await fetch(url)
+        if (response.ok) {
+          const data = await response.json()
+          setSuppliers(data.suppliers)
+        } else {
+          console.error('Failed to fetch suppliers')
+        }
+      } catch (error) {
+        console.error('Error fetching suppliers:', error)
+      }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
