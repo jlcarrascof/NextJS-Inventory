@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { FaDatabase, FaTimes } from 'react-icons/fa'
+import { useState, useEffect } from 'react';
+import { FaDatabase, FaTimes, FaFileAlt } from 'react-icons/fa'
 
 interface Supplier {
     name: string
@@ -17,9 +17,30 @@ export default function SupplierForm() {
         address: '',
         phone: '',
         country: '',
-      })
+      }) // Form
+    const [suppliers, setSuppliers] = useState<Supplier[]>([]) // Suppliers List
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+    const [query, setQuery] = useState('')
+
+    useEffect(() => {
+      fetchSuppliers(query)
+    }, [query])
+
+    const fetchSuppliers = async (search: string) => {
+      try {
+        const url = search ? `/api/suppliers?search=${search}` : '/api/suppliers'
+        const response = await fetch(url)
+        if (response.ok) {
+          const data = await response.json()
+          setSuppliers(data.suppliers) // Update data...
+        } else {
+          console.error('Failed to fetch suppliers')
+        }
+      } catch (error) {
+        console.error('Error fetching suppliers:', error)
+      }
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -162,6 +183,13 @@ export default function SupplierForm() {
               >
                 <FaTimes className="mr-2" />
                 <span>Cancel</span>
+              </button>
+              <button
+                onClick={() => window.location.href = '/dashboard/suppliers/list'}
+                className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                <FaFileAlt className="mr-2" />
+                <span>View List</span>
               </button>
             </div>
 
