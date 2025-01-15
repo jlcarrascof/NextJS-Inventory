@@ -32,7 +32,7 @@ export default function SupplierForm() {
         const response = await fetch(url)
         if (response.ok) {
           const data = await response.json()
-          setSuppliers(data.suppliers)
+          setSupplier(data.suppliers)
         } else {
           console.error('Failed to fetch suppliers')
         }
