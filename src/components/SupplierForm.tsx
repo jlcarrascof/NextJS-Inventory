@@ -17,7 +17,8 @@ export default function SupplierForm() {
         address: '',
         phone: '',
         country: '',
-      })
+      }) // Form
+    const [suppliers, setSuppliers] = useState<Supplier[]>([]) // Suppliers List
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
     const [query, setQuery] = useState('')
@@ -32,7 +33,7 @@ export default function SupplierForm() {
         const response = await fetch(url)
         if (response.ok) {
           const data = await response.json()
-          setSupplier(data.suppliers)
+          setSuppliers(data.suppliers) // Update data...
         } else {
           console.error('Failed to fetch suppliers')
         }
