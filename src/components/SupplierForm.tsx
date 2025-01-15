@@ -164,7 +164,7 @@ export default function SupplierForm() {
                 <span>Cancel</span>
               </button>
               <button
-                onClick={() => window.location.href = '/dashboard/departments/list'}
+                onClick={() => window.location.href = '/dashboard/suppliers/list'}
                 className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
               >
                 <FaFileAlt className="mr-2" />
