@@ -20,6 +20,7 @@ export default function SupplierForm() {
       })
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
+    const [query, setQuery] = useState('')
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
