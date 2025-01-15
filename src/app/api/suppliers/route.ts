@@ -31,8 +31,8 @@ export async function GET(req: Request) {
         const limit = parseInt(url.searchParams.get('limit') || '10', 10)
         const search = url.searchParams.get('search') || ''
 
-        const departments = search
-            ? await prisma.department.findMany({
+        const suppliers = search
+            ? await prisma.supplier.findMany({
                 where: {
                 name: {
                     contains: search,
@@ -40,15 +40,15 @@ export async function GET(req: Request) {
             },
             })
 
-            : await prisma.department.findMany({
+            : await prisma.supplier.findMany({
                 skip: (page - 1) * limit,
                 take: limit,
             })
 
-        const total = await prisma.department.count()
+        const total = await prisma.supplier.count()
 
-        return Response.json({ departments, total, page, limit }, { status: 200})
+        return Response.json({ suppliers, total, page, limit }, { status: 200})
     } catch(error) {
-        return new Response('Failed to fetch departments', { status: 500 })
+        return new Response('Failed to fetch suppliers', { status: 500 })
     }
 }
