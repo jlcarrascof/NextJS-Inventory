@@ -237,11 +237,23 @@ export default function SupplierForm() {
             <div className="flex flex-wrap justify-center gap-4">
               <button
                 type="submit"
-                className="flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                className={`flex items-center ${
+                selectedSupplier
+                ? 'bg-yellow-500 hover:bg-yellow-600'
+                : 'bg-green-600 hover:bg-green-700'
+                } text-white px-4 py-2 rounded`}
                 disabled={loading}
               >
-                <FaDatabase className="mr-2" />
-                <span>{loading ? 'Creating...' : 'Create'}</span>
+                  <FaDatabase className="mr-2" />
+                  <span>
+                    {loading
+                      ? selectedSupplier
+                      ? 'Updating ...'
+                      : 'Creating ...'
+                      : selectedSupplier
+                      ? 'Update'
+                      : 'Create'}
+                  </span>
               </button>
               <button
                 type="button"
