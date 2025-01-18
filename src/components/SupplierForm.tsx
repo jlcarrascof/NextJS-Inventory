@@ -23,6 +23,8 @@ export default function SupplierForm() {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState('')
     const [query, setQuery] = useState('')
+    const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
+    const [isSearchActive, setIsSearchActive] = useState(false)
 
     useEffect(() => {
       fetchSuppliers(query)
