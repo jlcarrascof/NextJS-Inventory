@@ -103,6 +103,7 @@ export default function SupplierForm() {
           phone: '',
           country: '',
         })
+        setSelectedSupplier(null)
     }
 
     return (
