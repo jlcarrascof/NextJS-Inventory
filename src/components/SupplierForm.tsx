@@ -4,6 +4,7 @@ import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
 import { Combobox } from '@headlessui/react'
 
 interface Supplier {
+    id: number
     name: string
     contact: string
     address: string
@@ -13,6 +14,7 @@ interface Supplier {
 
 export default function SupplierForm() {
     const [supplier, setSupplier] = useState<Supplier>({
+        id: 0,
         name: '',
         contact: '',
         address: '',
@@ -74,6 +76,7 @@ export default function SupplierForm() {
           if (response.ok) {
             setMessage('Supplier created successfully!')
             setSupplier({
+              id: 0,
               name: '',
               contact: '',
               address: '',
@@ -92,6 +95,7 @@ export default function SupplierForm() {
 
     const handleCancel = () => {
         setSupplier({
+          id: 0,
           name: '',
           contact: '',
           address: '',
@@ -106,6 +110,46 @@ export default function SupplierForm() {
             <h2 className="text-2xl font-bold text-center bg-green-100 text-green-800 px-4 py-2 rounded-md shadow-sm">
               Manage Suppliers
             </h2>
+            {/* Combobox for search */}
+            {isSearchActive && (
+              <div>
+                <label htmlFor="search" className="block font-medium">
+                  Search Supplier:
+                </label>
+                <Combobox value={selectedSupplier} onChange={(supplier) => {
+                setSelectedSupplier(supplier)
+                setName(supplier?.name || '') // Pre-fill the name field
+              }}>
+                <div className="relative">
+                  <Combobox.Input
+                    className="w-full p-2 border rounded"
+                    onChange={(e) => setQuery(e.target.value)}
+                    displayValue={(supplier: Supplier) => supplier?.name || ''}
+                    placeholder="Type to search..."
+                  />
+                  <Combobox.Options className="absolute z-10 mt-1 max-h-60  w-full overflow-auto bg-white border rounded shadow-lg">
+                    {suppliers.length === 0 ? (
+                      <div className="p-2 text-gray-700">No results found</div>
+                    ) : (
+                      suppliers.map((supplier: Supplier) => (
+                        <Combobox.Option
+                          key={supplier.id}
+                          value={supplier}
+                          className="cursor-pointer select-none p-2 hover:bg-gray-200"
+                        >
+                          {supplier.name}
+                        </Combobox.Option>
+                      ))
+                      )}
+                    </Combobox.Options>
+                </div>
+              </Combobox>
+            </div>
+          )}
+
+
+
+
 
             {/* Supplier Name */}
             <div>
