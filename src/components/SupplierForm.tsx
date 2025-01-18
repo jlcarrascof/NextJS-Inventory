@@ -45,6 +45,20 @@ export default function SupplierForm() {
       }
     }
 
+    const refreshSuppliers = async () => {
+      try {
+        const response = await fetch('/api/suppliers')
+        if (response.ok) {
+          const data = await response.json()
+          setSuppliers(data.suppliers)
+        } else {
+          console.error('Failed to refresh suppliers')
+        }
+      } catch (error) {
+        console.error('Error refreshing suppliers:', error)
+      }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
