@@ -57,8 +57,8 @@ export async function PATCH(req: Request) {
     try {
       const { id, name, contact, address, phone, country } = await req.json();
 
-      if (!id || !name) {
-        return new Response('ID and Name are required', { status: 400 });
+      if (!id || !name || !contact || !address || !phone || !country) {
+        return new Response('All fields are required', { status: 400 });
       }
 
       const supplier = await prisma.supplier.update({
