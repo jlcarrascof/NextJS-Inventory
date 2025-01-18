@@ -136,13 +136,13 @@ export default function SupplierForm() {
                   value={selectedSupplier}
                   onChange={(supplier) => {
                     setSelectedSupplier(supplier);
-                    setSupplier(supplier || {
-                      id: 0,
-                      name: '',
-                      contact: '',
-                      address: '',
-                      phone: '',
-                      country: '',
+                    setSupplier({
+                      id: supplier?.id || 0,
+                      name: supplier?.name || '',
+                      contact: supplier?.contact || '',
+                      address: supplier?.address || '',
+                      phone: supplier?.phone || '',
+                      country: supplier?.country || '',
                     }) // update form with the appropiate data
                   }}
                 >
