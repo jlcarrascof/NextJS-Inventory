@@ -129,7 +129,7 @@ export default function SupplierForm() {
             {/* Combobox for search */}
             {isSearchActive && (
               <div>
-                <label htmlFor="search" className="block font-medium">
+                <label htmlFor="search" className="block font-medium text-red-600">
                   Search Supplier:
                 </label>
                 <Combobox
