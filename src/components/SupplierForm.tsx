@@ -103,15 +103,15 @@ export default function SupplierForm() {
     }
 
     const handleCancel = () => {
-        setSupplier({
-          id: 0,
-          name: '',
-          contact: '',
-          address: '',
-          phone: '',
-          country: '',
-        })
-        setSelectedSupplier(null)
+      setSupplier({
+        id: 0,
+        name: '',
+        contact: '',
+        address: '',
+        phone: '',
+        country: '',
+      })
+      setSelectedSupplier(null)
     }
 
     const toggleSearch = () => {
