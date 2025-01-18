@@ -114,6 +114,12 @@ export default function SupplierForm() {
         setSelectedSupplier(null)
     }
 
+    const toggleSearch = () => {
+      setIsSearchActive(!isSearchActive)
+      setSelectedSupplier(null)
+      setQuery('')
+    }
+
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
           <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow w-full max-w-2xl">
