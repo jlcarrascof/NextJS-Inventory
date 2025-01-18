@@ -88,8 +88,15 @@ export default function SupplierForm() {
               ? 'Supplier updated successfully!'
               : 'Supplier created successfully!'
           )
-          setName('')
           setSelectedSupplier(null)
+          setSupplier({
+            id: 0,
+            name: '',
+            contact: '',
+            address: '',
+            phone: '',
+            country: '',
+          })
           await refreshSuppliers()
         } else {
           setMessage('Error processing request.')
