@@ -132,10 +132,20 @@ export default function SupplierForm() {
                 <label htmlFor="search" className="block font-medium">
                   Search Supplier:
                 </label>
-                <Combobox value={selectedSupplier} onChange={(supplier) => {
-                  setSelectedSupplier(supplier)
-                 setName(supplier?.name || '') // Pre-fill the name field
-                }}>
+                <Combobox
+                  value={selectedSupplier}
+                  onChange={(supplier) => {
+                    setSelectedSupplier(supplier);
+                    setSupplier(supplier || {
+                      id: 0,
+                      name: '',
+                      contact: '',
+                      address: '',
+                      phone: '',
+                      country: '',
+                    }) // update form with the appropiate data
+                  }}
+                >
                 <div className="relative">
                   <Combobox.Input
                     className="w-full p-2 border rounded"
