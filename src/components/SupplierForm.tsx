@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { FaDatabase, FaTimes, FaFileAlt } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
+import { Combobox } from '@headlessui/react'
 
 interface Supplier {
     name: string
