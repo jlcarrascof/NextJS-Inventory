@@ -52,3 +52,23 @@ export async function GET(req: Request) {
         return new Response('Failed to fetch suppliers', { status: 500 })
     }
 }
+
+export async function PATCH(req: Request) {
+    try {
+      const { id, name, contact, address, phone, country } = await req.json();
+
+      if (!id || !name) {
+        return new Response('ID and Name are required', { status: 400 });
+      }
+
+      const supplier = await prisma.supplier.update({
+        where: { id: parseInt(id, 10) },
+        data: { name, contact, address, phone, country },
+      });
+
+      return Response.json(supplier, { status: 200 });
+    } catch (error) {
+      console.error(error);
+      return new Response('Failed to update supplier', { status: 500 });
+    }
+}
