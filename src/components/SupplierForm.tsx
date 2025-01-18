@@ -27,6 +27,7 @@ export default function SupplierForm() {
     const [query, setQuery] = useState('')
     const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
     const [isSearchActive, setIsSearchActive] = useState(false)
+    const [name, setName] = useState('')
 
     useEffect(() => {
       fetchSuppliers(query)
