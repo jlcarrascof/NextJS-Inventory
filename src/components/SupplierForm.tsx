@@ -63,35 +63,43 @@ export default function SupplierForm() {
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setLoading(true)
-        setMessage('')
+      e.preventDefault()
+      setLoading(true)
+      setMessage('')
 
-        try {
-          const response = await fetch('/api/suppliers', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(supplier),
-          })
+      try {
 
-          if (response.ok) {
-            setMessage('Supplier created successfully!')
-            setSupplier({
-              id: 0,
-              name: '',
-              contact: '',
-              address: '',
-              phone: '',
-              country: '',
-            })
-          } else {
-            setMessage('Error creating supplier.')
-          }
-        } catch (error) {
-          setMessage('Something went wrong.')
-        } finally {
-          setLoading(false)
+        const url = '/api/suppliers'
+        const method = selectedSupplier ? 'PATCH' : 'POST'
+
+        const body = selectedSupplier
+          ? { id: selectedSupplier.id, name }
+          : { name }
+
+        const response = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        })
+
+        if (response.ok) {
+          setMessage(
+            selectedSupplier
+              ? 'Supplier updated successfully!'
+              : 'Supplier created successfully!'
+          )
+          setName('')
+          setSelectedSupplier(null)
+          await refreshSuppliers()
+        } else {
+          setMessage('Error processing request.')
         }
+
+      } catch (error) {
+        setMessage('Something went wrong.')
+      } finally {
+        setLoading(false)
+      }
     }
 
     const handleCancel = () => {
