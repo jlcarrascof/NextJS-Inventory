@@ -73,8 +73,21 @@ export default function SupplierForm() {
         const method = selectedSupplier ? 'PATCH' : 'POST'
 
         const body = selectedSupplier
-          ? { id: selectedSupplier.id, name }
-          : { name }
+          ? {
+              id: selectedSupplier.id,
+              name: supplier.name,
+              contact: supplier.contact,
+              address: supplier.address,
+              phone: supplier.phone,
+              country: supplier.country,
+            }
+          : {
+              name: supplier.name,
+              contact: supplier.contact,
+              address: supplier.address,
+              phone: supplier.phone,
+              country: supplier.country,
+            }
 
         const response = await fetch(url, {
           method,
