@@ -118,9 +118,9 @@ export default function SupplierForm() {
                   Search Supplier:
                 </label>
                 <Combobox value={selectedSupplier} onChange={(supplier) => {
-                setSelectedSupplier(supplier)
-                setName(supplier?.name || '') // Pre-fill the name field
-              }}>
+                  setSelectedSupplier(supplier)
+                 setName(supplier?.name || '') // Pre-fill the name field
+                }}>
                 <div className="relative">
                   <Combobox.Input
                     className="w-full p-2 border rounded"
@@ -143,14 +143,10 @@ export default function SupplierForm() {
                       ))
                       )}
                     </Combobox.Options>
-                </div>
-              </Combobox>
-            </div>
-          )}
-
-
-
-
+                  </div>
+                </Combobox>
+              </div>
+            )}
 
             {/* Supplier Name */}
             <div>
