@@ -72,3 +72,32 @@ export async function PATCH(req: Request) {
       return new Response('Failed to update supplier', { status: 500 });
     }
 }
+
+export async function DELETE(req: Request) {
+    try {
+
+        const { id } = await req.json()
+
+        if (!id) {
+            return new Response('ID is required', { status: 400 })
+        }
+
+        // validating future relationships
+        const relatedProductsCount = await prisma.product.count({
+            where: { supplierId: parseInt(id, 10) },
+        })
+
+        if (relatedProductsCount > 0) {
+            return new Response('Cannot delete supplier with related products.', { status: 400 })
+        }
+
+        const supplier = await prisma.supplier.delete({
+            where: { id: parseInt(id, 10) },
+        })
+
+        return Response.json(supplier, { status: 200 })
+    } catch (error) {
+        console.error(error)
+        return new Response('Failed to delete supplier', { status: 500 })
+    }
+}
