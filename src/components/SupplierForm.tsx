@@ -27,7 +27,6 @@ export default function SupplierForm() {
     const [query, setQuery] = useState('')
     const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
     const [isSearchActive, setIsSearchActive] = useState(false)
-    const [name, setName] = useState('')
 
     useEffect(() => {
       fetchSuppliers(query)
@@ -59,6 +58,40 @@ export default function SupplierForm() {
         }
       } catch (error) {
         console.error('Error refreshing suppliers:', error)
+      }
+    }
+
+    const handleDelete = async () => {
+      if (!selectedSupplier) return;
+
+      const confirmDelete = window.confirm(
+          `Are you sure you want to delete the supplier: ${selectedSupplier.name}?`
+      );
+
+      if (!confirmDelete) return;
+
+      setLoading(true);
+      setMessage('');
+
+      try {
+          const response = await fetch(`/api/suppliers`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: selectedSupplier.id }),
+          })
+
+          if (response.ok) {
+              setMessage('Supplier deleted successfully!')
+              setSelectedSupplier(null)
+              setName('')
+              await refreshSuppliers()
+          } else {
+              setMessage('Error deleting supplier.')
+          }
+      } catch (error) {
+          setMessage('Something went wrong.')
+      } finally {
+          setLoading(false)
       }
     }
 
