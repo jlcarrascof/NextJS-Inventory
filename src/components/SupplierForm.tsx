@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { FaDatabase, FaTimes, FaFileAlt, FaSearch } from 'react-icons/fa'
+import { FaDatabase, FaTimes, FaFileAlt, FaSearch, FaTrash } from 'react-icons/fa'
 import { Combobox } from '@headlessui/react'
 
 interface Supplier {
@@ -27,7 +27,6 @@ export default function SupplierForm() {
     const [query, setQuery] = useState('')
     const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
     const [isSearchActive, setIsSearchActive] = useState(false)
-    const [name, setName] = useState('')
 
     useEffect(() => {
       fetchSuppliers(query)
@@ -59,6 +58,47 @@ export default function SupplierForm() {
         }
       } catch (error) {
         console.error('Error refreshing suppliers:', error)
+      }
+    }
+
+    const handleDelete = async () => {
+      if (!selectedSupplier) return;
+
+      const confirmDelete = window.confirm(
+          `Are you sure you want to delete the supplier: ${selectedSupplier.name}?`
+      );
+
+      if (!confirmDelete) return;
+
+      setLoading(true);
+      setMessage('');
+
+      try {
+          const response = await fetch(`/api/suppliers`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: selectedSupplier.id }),
+          })
+
+          if (response.ok) {
+              setMessage('Supplier deleted successfully!')
+              setSelectedSupplier(null)
+              setSupplier({
+                id: 0,
+                name: '',
+                contact: '',
+                address: '',
+                phone: '',
+                country: '',
+              })
+              await refreshSuppliers()
+          } else {
+              setMessage('Error deleting supplier.')
+          }
+      } catch (error) {
+          setMessage('Something went wrong.')
+      } finally {
+          setLoading(false)
       }
     }
 
@@ -142,7 +182,7 @@ export default function SupplierForm() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-          <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow w-full max-w-2xl">
+          <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow">
             <h2 className="text-2xl font-bold text-center bg-green-100 text-green-800 px-4 py-2 rounded-md shadow-sm">
               Manage Suppliers
             </h2>
@@ -300,12 +340,23 @@ export default function SupplierForm() {
                 <span>Cancel</span>
               </button>
               <button
-              type="button"
-              onClick={toggleSearch}
-              className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                type="button"
+                onClick={toggleSearch}
+                className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                >
+                  <FaSearch className="mr-2" />
+                  <span>{isSearchActive ? 'Close Search' : 'Find'}</span>
+                </button>
+                <button
+                type="button"
+                onClick={handleDelete}
+                className={`flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${
+                    !selectedSupplier ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={!selectedSupplier || loading}
               >
-                <FaSearch className="mr-2" />
-                <span>{isSearchActive ? 'Close Search' : 'Find'}</span>
+                <FaTrash className="mr-2" />
+                <span>{loading ? 'Deleting...' : 'Delete'}</span>
               </button>
               <button
                 onClick={() => window.location.href = '/dashboard/suppliers/list'}
