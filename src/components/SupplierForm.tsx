@@ -83,7 +83,14 @@ export default function SupplierForm() {
           if (response.ok) {
               setMessage('Supplier deleted successfully!')
               setSelectedSupplier(null)
-              setName('')
+              setSupplier({
+                id: 0,
+                name: '',
+                contact: '',
+                address: '',
+                phone: '',
+                country: '',
+              })
               await refreshSuppliers()
           } else {
               setMessage('Error deleting supplier.')
