@@ -340,12 +340,23 @@ export default function SupplierForm() {
                 <span>Cancel</span>
               </button>
               <button
-              type="button"
-              onClick={toggleSearch}
-              className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                type="button"
+                onClick={toggleSearch}
+                className="flex items-center bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                >
+                  <FaSearch className="mr-2" />
+                  <span>{isSearchActive ? 'Close Search' : 'Find'}</span>
+                </button>
+                <button
+                type="button"
+                onClick={handleDelete}
+                className={`flex items-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${
+                    !selectedSupplier ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={!selectedSupplier || loading}
               >
-                <FaSearch className="mr-2" />
-                <span>{isSearchActive ? 'Close Search' : 'Find'}</span>
+                <FaTrash className="mr-2" />
+                <span>{loading ? 'Deleting...' : 'Delete'}</span>
               </button>
               <button
                 onClick={() => window.location.href = '/dashboard/suppliers/list'}
