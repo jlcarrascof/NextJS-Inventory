@@ -144,6 +144,14 @@ export default function ProductForm() {
                 <input type="hidden" {...register('supplierId')} />
             </div>
 
+            {/* Submit Button */}
+            <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                Save Product
+            </button>
+
+            {/* Message */}
+            {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
+
         </form>
     )
 
