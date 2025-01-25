@@ -126,6 +126,24 @@ export default function ProductForm() {
                 <input type="hidden" {...register('departmentId', { required: 'Department is required' })} />
             </div>
 
+            {/* Supplier */}
+            <div>
+                <label>Supplier</label>
+                <Combobox
+                onChange={(value: Supplier) => setValue('supplierId', value.id)}
+                >
+                <Combobox.Input placeholder="Select supplier" />
+                <Combobox.Options>
+                    {suppliers.map((supplier) => (
+                    <Combobox.Option key={supplier.id} value={supplier}>
+                        {supplier.name}
+                    </Combobox.Option>
+                    ))}
+                </Combobox.Options>
+                </Combobox>
+                <input type="hidden" {...register('supplierId')} />
+            </div>
+
         </form>
     )
 
