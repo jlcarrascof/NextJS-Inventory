@@ -72,6 +72,29 @@ export default function ProductForm() {
                 />
                 {errors.name && <p className="text-red-500">{errors.name.message}</p>}
             </div>
+
+            {/* Quantity */}
+            <div>
+                <label>Quantity</label>
+                <input
+                type="number"
+                {...register('quantity', { required: 'Quantity is required', min: 1 })}
+                className="w-full p-2 border rounded"
+                />
+                {errors.quantity && <p className="text-red-500">{errors.quantity.message}</p>}
+            </div>
+
+            {/* Price */}
+            <div>
+                <label>Price</label>
+                <input
+                type="number"
+                step="0.01"
+                {...register('price', { required: 'Price is required', min: 0 })}
+                className="w-full p-2 border rounded"
+                />
+                {errors.price && <p className="text-red-500">{errors.price.message}</p>}
+            </div>
         </form>
     )
 
