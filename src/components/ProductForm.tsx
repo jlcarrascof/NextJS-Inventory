@@ -39,4 +39,23 @@ export default function ProductForm() {
           .then((data) => setSuppliers(data.suppliers))
     }, [])
 
+    const onSubmit = async (data: ProductFormInputs) => {
+        try {
+          const response = await fetch('/api/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          })
+
+          if (response.ok) {
+            setMessage('Product created successfully!')
+          } else {
+            setMessage('Error creating product.')
+          }
+        } catch (error) {
+          console.error(error);
+          setMessage('Something went wrong.')
+        }
+    }
+
 }
