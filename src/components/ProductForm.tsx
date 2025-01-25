@@ -118,37 +118,45 @@ export default function ProductForm() {
           {errors.cost && <p className="text-red-500">{errors.cost.message}</p>}
         </div>
 
-        {/* Department */}
-        <div>
+        <div className="relative">
           <label className="block font-medium">Department</label>
           <Combobox
-            onChange={(value: Department | null) => {
-              if (value) {
-                setValue('departmentId', value.id);
-              } else {
-                setValue('departmentId', 0);
-              }
+            value={selectedDepartment}
+            onChange={(value: Department) => {
+              setSelectedDepartment(value);
+              setValue('departmentId', value.id);
             }}
           >
-            <Combobox.Input
-              placeholder="Select department"
-              className="w-full p-2 border rounded focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg">
-              {departments.map((department) => (
-                <Combobox.Option
-                  key={department.id}
-                  value={department}
-                  className="cursor-pointer select-none p-2 hover:bg-gray-200"
-                >
-                  {department.name}
-                </Combobox.Option>
-              ))}
-            </Combobox.Options>
+            <div className="relative">
+              <Combobox.Input
+                className="w-full p-2 border rounded focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Select department"
+                onChange={(e) => setDepartmentQuery(e.target.value)}
+                displayValue={(dept: Department) => dept?.name || ''}
+              />
+              <Combobox.Options
+                className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg"
+              >
+                {filteredDepartments.map((department) => (
+                  <Combobox.Option
+                    key={department.id}
+                    value={department}
+                    className={({ active }) =>
+                      `cursor-pointer select-none p-2 ${active ? 'bg-indigo-600 text-white' : 'text-gray-900'}`
+                    }
+                  >
+                    {department.name}
+                  </Combobox.Option>
+                ))}
+                {filteredDepartments.length === 0 && (
+                  <div className="cursor-default select-none p-2 text-gray-500">No results found</div>
+                )}
+              </Combobox.Options>
+            </div>
           </Combobox>
           <input type="hidden" {...register('departmentId', { required: 'Department is required' })} />
+         {errors.departmentId && <p className="text-red-500">{errors.departmentId.message}</p>}
         </div>
-
         {/* Supplier */}
         <div>
           <label className="block font-medium">Supplier</label>
