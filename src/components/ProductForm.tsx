@@ -23,3 +23,12 @@ interface Supplier {
   name: string;
 }
 
+export default function ProductForm() {
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<ProductFormInputs>()
+    const [departments, setDepartments] = useState<Department[]>([])
+    const [suppliers, setSuppliers] = useState<Supplier[]>([])
+    const [message, setMessage] = useState('')
+
+
+
+}
