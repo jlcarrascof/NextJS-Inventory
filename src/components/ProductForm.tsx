@@ -29,6 +29,14 @@ export default function ProductForm() {
     const [suppliers, setSuppliers] = useState<Supplier[]>([])
     const [message, setMessage] = useState('')
 
+    useEffect(() => {
+        fetch('/api/departments')
+          .then((res) => res.json())
+          .then((data) => setDepartments(data.departments))
 
+        fetch('/api/suppliers')
+          .then((res) => res.json())
+          .then((data) => setSuppliers(data.suppliers))
+    }, [])
 
 }
