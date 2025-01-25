@@ -108,6 +108,24 @@ export default function ProductForm() {
                 {errors.cost && <p className="text-red-500">{errors.cost.message}</p>}
             </div>
 
+            {/* Department */}
+            <div>
+                <label>Department</label>
+                <Combobox
+                onChange={(value: Department) => setValue('departmentId', value.id)}
+                >
+                <Combobox.Input placeholder="Select department" />
+                <Combobox.Options>
+                    {departments.map((department) => (
+                    <Combobox.Option key={department.id} value={department}>
+                        {department.name}
+                    </Combobox.Option>
+                    ))}
+                </Combobox.Options>
+                </Combobox>
+                <input type="hidden" {...register('departmentId', { required: 'Department is required' })} />
+            </div>
+
         </form>
     )
 
