@@ -95,6 +95,19 @@ export default function ProductForm() {
                 />
                 {errors.price && <p className="text-red-500">{errors.price.message}</p>}
             </div>
+
+            {/* Cost */}
+            <div>
+                <label>Cost</label>
+                <input
+                type="number"
+                step="0.01"
+                {...register('cost', { required: 'Cost is required', min: 0 })}
+                className="w-full p-2 border rounded"
+                />
+                {errors.cost && <p className="text-red-500">{errors.cost.message}</p>}
+            </div>
+
         </form>
     )
 
