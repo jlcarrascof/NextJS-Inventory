@@ -32,6 +32,16 @@ export async function POST(req: Request) {
             return new Response('Invalid department ID', { status: 400 });
         }
 
+        // Verify if the supplier exists (if supplierId is provided)
+        if (supplierId) {
+            const supplierExists = await prisma.supplier.findUnique({
+                where: { id: supplierId },
+            })
+        if (!supplierExists) {
+            return new Response('Invalid supplier ID', { status: 400 });
+            }
+        }
+
         const product = await prisma.product.create({
             data: { name, quantity, price, cost, departmentId, supplierId },
         })
