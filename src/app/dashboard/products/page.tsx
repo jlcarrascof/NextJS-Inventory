@@ -1,3 +1,10 @@
-export default function DepartmentsPage() {
-    return <h1>Products Management</h1>;
+import ProductForm from '@/components/ProductForm'
+
+export default function ProductsPage() {
+  return (
+    <div>
+      <h1 className="text-3xl font-bold mb-4">Products</h1>
+      <ProductForm />
+    </div>
+  )
 }
