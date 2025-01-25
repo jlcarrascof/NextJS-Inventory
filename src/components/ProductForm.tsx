@@ -28,6 +28,8 @@ export default function ProductForm() {
   const [departments, setDepartments] = useState<Department[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [message, setMessage] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null);
+  const [departmentQuery, setDepartmentQuery] = useState('');
 
   useEffect(() => {
     fetch('/api/departments')
@@ -38,6 +40,12 @@ export default function ProductForm() {
       .then((res) => res.json())
       .then((data) => setSuppliers(data.suppliers));
   }, []);
+
+  const filteredDepartments = departmentQuery === ''
+  ? departments
+  : departments.filter((dept) =>
+      dept.name.toLowerCase().includes(departmentQuery.toLowerCase())
+    );
 
   const onSubmit = async (data: ProductFormInputs) => {
     try {
