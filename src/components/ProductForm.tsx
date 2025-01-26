@@ -42,10 +42,10 @@ export default function ProductForm() {
   }, []);
 
   const filteredDepartments = departmentQuery === ''
-  ? departments
-  : departments.filter((dept) =>
-      dept.name.toLowerCase().includes(departmentQuery.toLowerCase())
-    );
+    ? departments
+    : departments.filter((dept) =>
+        dept.name.toLowerCase().includes(departmentQuery.toLowerCase())
+      );
 
   const onSubmit = async (data: ProductFormInputs) => {
     try {
@@ -118,13 +118,14 @@ export default function ProductForm() {
           {errors.cost && <p className="text-red-500">{errors.cost.message}</p>}
         </div>
 
+        {/* Department */}
         <div className="relative">
           <label className="block font-medium">Department</label>
           <Combobox
             value={selectedDepartment}
-            onChange={(value: Department) => {
+            onChange={(value: Department | null) => {
               setSelectedDepartment(value);
-              setValue('departmentId', value.id);
+              setValue('departmentId', value?.id || 0); // Manejar valor `null`
             }}
           >
             <div className="relative">
@@ -155,18 +156,15 @@ export default function ProductForm() {
             </div>
           </Combobox>
           <input type="hidden" {...register('departmentId', { required: 'Department is required' })} />
-         {errors.departmentId && <p className="text-red-500">{errors.departmentId.message}</p>}
+          {errors.departmentId && <p className="text-red-500">{errors.departmentId.message}</p>}
         </div>
+
         {/* Supplier */}
         <div>
           <label className="block font-medium">Supplier</label>
           <Combobox
             onChange={(value: Supplier | null) => {
-              if (value) {
-                setValue('supplierId', value.id);
-              } else {
-                setValue('supplierId', undefined);
-              }
+              setValue('supplierId', value?.id);
             }}
           >
             <Combobox.Input
