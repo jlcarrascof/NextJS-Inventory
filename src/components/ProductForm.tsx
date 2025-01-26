@@ -68,7 +68,8 @@ export default function ProductForm() {
       if (response.ok) {
         setMessage('Product created successfully!');
       } else {
-        setMessage('Error creating product.');
+        const error = await response.text(); // Muestra el mensaje de error
+        setMessage(`Error creating product: ${error}`);
       }
     } catch (error) {
       console.error(error);
