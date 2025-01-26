@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaDatabase, FaTimes, FaFileAlt, FaSearch, FaTrash } from 'react-icons/fa'
+import { FaDatabase, FaTimes } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
 import { Combobox } from '@headlessui/react';
 
@@ -230,12 +230,16 @@ export default function ProductForm() {
 
         {/* Submit Button */}
 
-
         <button
-          type="submit"
-          className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Save Product
+            type="submit"
+            className="flex items-center bg-green-600 hover:bg-green-700'
+            text-white px-4 py-2 rounded"
+            disabled={loading}
+            >
+              <FaDatabase className="mr-2" />
+          <span>
+            {loading ? 'Creating ...' : 'Create'}
+          </span>
         </button>
 
         <button
