@@ -30,6 +30,8 @@ export default function ProductForm() {
   const [message, setMessage] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null);
   const [departmentQuery, setDepartmentQuery] = useState('');
+  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
+  const [supplierQuery, setSupplierQuery] = useState('');
 
   useEffect(() => {
     fetch('/api/departments')
@@ -45,6 +47,13 @@ export default function ProductForm() {
     ? departments
     : departments.filter((dept) =>
         dept.name.toLowerCase().includes(departmentQuery.toLowerCase())
+      );
+
+
+  const filteredSuppliers = supplierQuery === ''
+    ? suppliers
+    : suppliers.filter((sup) =>
+        sup.name.toLowerCase().includes(supplierQuery.toLowerCase())
       );
 
   const onSubmit = async (data: ProductFormInputs) => {
@@ -160,30 +169,44 @@ export default function ProductForm() {
         </div>
 
         {/* Supplier */}
-        <div>
+        <div className="relative">
           <label className="block font-medium">Supplier</label>
           <Combobox
+            value={selectedSupplier}
             onChange={(value: Supplier | null) => {
-              setValue('supplierId', value?.id);
+              setSelectedSupplier(value);
+              setValue('supplierId', value?.id || 0); // Manejar valor `null`
             }}
           >
-            <Combobox.Input
-              placeholder="Select supplier"
-              className="w-full p-2 border rounded focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg">
-              {suppliers.map((supplier) => (
-                <Combobox.Option
-                  key={supplier.id}
-                  value={supplier}
-                  className="cursor-pointer select-none p-2 hover:bg-gray-200"
-                >
-                  {supplier.name}
-                </Combobox.Option>
-              ))}
-            </Combobox.Options>
+            <div className="relative">
+              <Combobox.Input
+                className="w-full p-2 border rounded focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Select supplier"
+                onChange={(e) => setSupplierQuery(e.target.value)}
+                displayValue={(dept: Supplier) => dept?.name || ''}
+              />
+              <Combobox.Options
+                className="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white border rounded shadow-lg"
+              >
+                {filteredSuppliers.map((supplier) => (
+                  <Combobox.Option
+                    key={supplier.id}
+                    value={supplier}
+                    className={({ active }) =>
+                      `cursor-pointer select-none p-2 ${active ? 'bg-indigo-600 text-white' : 'text-gray-900'}`
+                    }
+                  >
+                    {supplier.name}
+                  </Combobox.Option>
+                ))}
+                {filteredSuppliers.length === 0 && (
+                  <div className="cursor-default select-none p-2 text-gray-500">No results found</div>
+                )}
+              </Combobox.Options>
+            </div>
           </Combobox>
-          <input type="hidden" {...register('supplierId')} />
+          <input type="hidden" {...register('supplierId', { required: 'Supplier is required' })} />
+          {errors.supplierId && <p className="text-red-500">{errors.supplierId.message}</p>}
         </div>
 
         {/* Submit Button */}
