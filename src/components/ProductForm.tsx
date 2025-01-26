@@ -60,7 +60,6 @@ export default function ProductForm() {
     console.log('Data sent to backend:', data); // Verifica los datos
     try {
 
-      // Asegúrate de convertir los valores a números
       const payload = {
         ...data,
         quantity: Number(data.quantity),
@@ -77,11 +76,10 @@ export default function ProductForm() {
       if (response.ok) {
         setMessage('Product created successfully!');
       } else {
-        const error = await response.text(); // Muestra el mensaje de error
+        const error = await response.text();
         setMessage(`Error creating product: ${error}`);
       }
     } catch (error) {
-      console.error(error);
       setMessage('Something went wrong.');
     }
   };
@@ -145,7 +143,7 @@ export default function ProductForm() {
             value={selectedDepartment}
             onChange={(value: Department | null) => {
               setSelectedDepartment(value);
-              setValue('departmentId', value?.id || 0); // Manejar valor `null`
+              setValue('departmentId', value?.id || 0);
             }}
           >
             <div className="relative">
@@ -186,7 +184,7 @@ export default function ProductForm() {
             value={selectedSupplier}
             onChange={(value: Supplier | null) => {
               setSelectedSupplier(value);
-              setValue('supplierId', value?.id || 0); // Manejar valor `null`
+              setValue('supplierId', value?.id || 0);
             }}
           >
             <div className="relative">
