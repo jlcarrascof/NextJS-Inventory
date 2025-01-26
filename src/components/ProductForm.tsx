@@ -229,26 +229,27 @@ export default function ProductForm() {
         </div>
 
         {/* Submit Button */}
+        <div className="flex flex-wrap justify-center gap-4">
+          <button
+              type="submit"
+              className="flex items-center bg-green-600 hover:bg-green-700'
+              text-white px-4 py-2 rounded"
+              disabled={loading}
+              >
+                <FaDatabase className="mr-2" />
+            <span>
+              {loading ? 'Creating ...' : 'Create'}
+            </span>
+          </button>
 
-        <button
-            type="submit"
-            className="flex items-center bg-green-600 hover:bg-green-700'
-            text-white px-4 py-2 rounded"
-            disabled={loading}
-            >
-              <FaDatabase className="mr-2" />
-          <span>
-            {loading ? 'Creating ...' : 'Create'}
-          </span>
-        </button>
-
-        <button
-          onClick={onCancel}
-          className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        >
-          <FaTimes className="mr-2" />
-          <span>Cancel</span>
-        </button>
+          <button
+            onClick={onCancel}
+            className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            <FaTimes className="mr-2" />
+            <span>Cancel</span>
+          </button>
+        </div>
 
         {/* Message */}
         {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
