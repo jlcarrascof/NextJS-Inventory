@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { FaDatabase, FaTimes, FaFileAlt, FaSearch, FaTrash } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
 import { Combobox } from '@headlessui/react';
 
