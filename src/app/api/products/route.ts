@@ -5,8 +5,6 @@ const prisma = new PrismaClient()
 export async function POST(req: Request) {
     try {
         const { name, quantity, price, cost, departmentId, supplierId } = await req.json()
-        console.log('Received data:', { name, quantity, price, cost, departmentId, supplierId }) // Log de entrada
-
 
         // Basic validations ...
         if (!name || !quantity || !price || !cost || !departmentId) {
@@ -48,10 +46,8 @@ export async function POST(req: Request) {
         const product = await prisma.product.create({
             data: { name, quantity, price, cost, departmentId, supplierId },
         })
-        console.log('Product created successfully:', product); // Log de éxito
         return Response.json(product, { status: 201 })
     } catch (error) {
-        console.error('Error in POST /api/products:', error); // Log del error
         return new Response('Failed to create a Product', { status: 500 })
     }
 }
