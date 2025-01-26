@@ -25,7 +25,7 @@ interface Supplier {
 }
 
 export default function ProductForm() {
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<ProductFormInputs>();
+  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<ProductFormInputs>();
   const [departments, setDepartments] = useState<Department[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [message, setMessage] = useState('');
@@ -77,6 +77,9 @@ export default function ProductForm() {
 
       if (response.ok) {
         setMessage('Product created successfully!');
+        reset();
+        setSelectedDepartment(null);
+        setSelectedSupplier(null);
       } else {
         const error = await response.text();
         setMessage(`Error creating product: ${error}`);
@@ -89,9 +92,10 @@ export default function ProductForm() {
   };
 
   const onCancel = () => {
-    // clear fields here //
-    setSelectedDepartment(null)
-    setSelectedSupplier(null)
+    reset();
+    setSelectedDepartment(null);
+    setSelectedSupplier(null);
+    setMessage('')
   }
 
   return (
