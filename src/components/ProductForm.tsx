@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { FaDatabase, FaTimes } from 'react-icons/fa'
-import { useForm } from 'react-hook-form';
-import { Combobox } from '@headlessui/react';
+import { useForm } from 'react-hook-form'
+import { Combobox } from '@headlessui/react'
 
 interface ProductFormInputs {
   name: string;
@@ -25,38 +25,38 @@ interface Supplier {
 }
 
 export default function ProductForm() {
-  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<ProductFormInputs>();
-  const [departments, setDepartments] = useState<Department[]>([]);
-  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
-  const [message, setMessage] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null);
-  const [departmentQuery, setDepartmentQuery] = useState('');
-  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
-  const [supplierQuery, setSupplierQuery] = useState('');
+  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<ProductFormInputs>()
+  const [departments, setDepartments] = useState<Department[]>([])
+  const [suppliers, setSuppliers] = useState<Supplier[]>([])
+  const [message, setMessage] = useState('')
+  const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
+  const [departmentQuery, setDepartmentQuery] = useState('')
+  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
+  const [supplierQuery, setSupplierQuery] = useState('')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     fetch('/api/departments')
       .then((res) => res.json())
-      .then((data) => setDepartments(data.departments));
+      .then((data) => setDepartments(data.departments))
 
     fetch('/api/suppliers')
       .then((res) => res.json())
-      .then((data) => setSuppliers(data.suppliers));
+      .then((data) => setSuppliers(data.suppliers))
   }, []);
 
   const filteredDepartments = departmentQuery === ''
     ? departments
     : departments.filter((dept) =>
         dept.name.toLowerCase().includes(departmentQuery.toLowerCase())
-      );
+      )
 
 
   const filteredSuppliers = supplierQuery === ''
     ? suppliers
     : suppliers.filter((sup) =>
         sup.name.toLowerCase().includes(supplierQuery.toLowerCase())
-      );
+      )
 
   const onSubmit = async (data: ProductFormInputs) => {
     setLoading(true)
@@ -67,34 +67,34 @@ export default function ProductForm() {
         quantity: Number(data.quantity),
         price: Number(data.price),
         cost: Number(data.cost),
-      };
+      }
 
       const response = await fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-      });
+      })
 
       if (response.ok) {
-        setMessage('Product created successfully!');
-        reset();
-        setSelectedDepartment(null);
-        setSelectedSupplier(null);
+        setMessage('Product created successfully!')
+        reset()
+        setSelectedDepartment(null)
+        setSelectedSupplier(null)
       } else {
-        const error = await response.text();
-        setMessage(`Error creating product: ${error}`);
+        const error = await response.text()
+        setMessage(`Error creating product: ${error}`)
       }
     } catch (error) {
-      setMessage('Something went wrong.');
+      setMessage('Something went wrong.')
     } finally {
       setLoading(false)
     }
   };
 
   const onCancel = () => {
-    reset();
-    setSelectedDepartment(null);
-    setSelectedSupplier(null);
+    reset()
+    setSelectedDepartment(null)
+    setSelectedSupplier(null)
     setMessage('')
   }
 
@@ -156,8 +156,8 @@ export default function ProductForm() {
           <Combobox
             value={selectedDepartment}
             onChange={(value: Department | null) => {
-              setSelectedDepartment(value);
-              setValue('departmentId', value?.id || 0);
+              setSelectedDepartment(value)
+              setValue('departmentId', value?.id || 0)
             }}
           >
             <div className="relative">
@@ -198,7 +198,7 @@ export default function ProductForm() {
             value={selectedSupplier}
             onChange={(value: Supplier | null) => {
               setSelectedSupplier(value);
-              setValue('supplierId', value?.id || 0);
+              setValue('supplierId', value?.id || 0)
             }}
           >
             <div className="relative">
@@ -259,5 +259,5 @@ export default function ProductForm() {
         {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
       </form>
     </div>
-  );
+  )
 }
