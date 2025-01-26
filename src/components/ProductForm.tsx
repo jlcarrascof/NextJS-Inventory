@@ -59,10 +59,19 @@ export default function ProductForm() {
   const onSubmit = async (data: ProductFormInputs) => {
     console.log('Data sent to backend:', data); // Verifica los datos
     try {
+
+      // Asegúrate de convertir los valores a números
+      const payload = {
+        ...data,
+        quantity: Number(data.quantity),
+        price: Number(data.price),
+        cost: Number(data.cost),
+      };
+
       const response = await fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
