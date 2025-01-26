@@ -33,6 +33,7 @@ export default function ProductForm() {
   const [departmentQuery, setDepartmentQuery] = useState('');
   const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null);
   const [supplierQuery, setSupplierQuery] = useState('');
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     fetch('/api/departments')
@@ -58,7 +59,7 @@ export default function ProductForm() {
       );
 
   const onSubmit = async (data: ProductFormInputs) => {
-    console.log('Data sent to backend:', data); // Verifica los datos
+    setLoading(true)
     try {
 
       const payload = {
@@ -82,6 +83,8 @@ export default function ProductForm() {
       }
     } catch (error) {
       setMessage('Something went wrong.');
+    } finally {
+      setLoading(false)
     }
   };
 
