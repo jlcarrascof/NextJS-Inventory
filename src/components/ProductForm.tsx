@@ -88,6 +88,12 @@ export default function ProductForm() {
     }
   };
 
+  const onCancel = () => {
+    // clear fields here //
+    setSelectedDepartment(null)
+    setSelectedSupplier(null)
+  }
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white p-6 rounded-lg shadow w-full max-w-2xl">
