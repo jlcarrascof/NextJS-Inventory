@@ -229,11 +229,21 @@ export default function ProductForm() {
         </div>
 
         {/* Submit Button */}
+
+
         <button
           type="submit"
           className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
           Save Product
+        </button>
+
+        <button
+          onClick={onCancel}
+          className="flex items-center bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        >
+          <FaTimes className="mr-2" />
+          <span>Cancel</span>
         </button>
 
         {/* Message */}
