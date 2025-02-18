@@ -10,3 +10,16 @@ interface SearchableDropdownProps<T> {
   setQuery: (value: string) => void
   data: T[]
 }
+
+export function SearchableDropdown<T extends { id: number; name: string }>({
+    label,
+    selected,
+    setSelected,
+    query,
+    setQuery,
+    data,
+  }: SearchableDropdownProps<T>) {
+    return (
+
+    )
+}
