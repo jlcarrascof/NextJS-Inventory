@@ -20,6 +20,29 @@ export function SearchableDropdown<T extends { id: number; name: string }>({
     data,
   }: SearchableDropdownProps<T>) {
     return (
-
+      <div className="relative">
+        <label className="block font-medium">{label}</label>
+        <Combobox value={selected} onChange={setSelected}>
+          <div className="relative">
+            <Combobox.Input
+              className="w-full p-2 border rounded"
+              placeholder={`Select ${label.toLowerCase()}`}
+              onChange={(e) => setQuery(e.target.value)}
+              displayValue={(item: T) => item?.name || ""}
+            />
+            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full bg-white border rounded shadow-lg">
+              {data.length === 0 ? (
+                <div className="cursor-default select-none p-2 text-gray-500">No results found</div>
+              ) : (
+                data.map((item) => (
+                  <Combobox.Option key={item.id} value={item} className="cursor-pointer select-none p-2">
+                    {item.name}
+                  </Combobox.Option>
+                ))
+              )}
+            </Combobox.Options>
+          </div>
+        </Combobox>
+      </div>
     )
 }
