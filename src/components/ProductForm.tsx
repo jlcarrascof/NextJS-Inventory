@@ -53,7 +53,14 @@ export default function ProductForm() {
 
     setLoading(true)
     try {
-      const payload = { ...data, quantity: Number(data.quantity), price: Number(data.price), cost: Number(data.cost) }
+      const payload = {
+        ...data,
+        departmentId: selectedDepartment.id,
+        supplierId: selectedSupplier?.id ?? null,
+        quantity: Number(data.quantity),
+        price: Number(data.price),
+        cost: Number(data.cost),
+      }
 
       const response = await fetch("/api/products", {
         method: "POST",
