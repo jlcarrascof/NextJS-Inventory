@@ -79,7 +79,20 @@ export default function ProductForm() {
       <SearchableDropdown label="Department" selected={selectedDepartment} setSelected={setSelectedDepartment} query={departmentQuery} setQuery={setDepartmentQuery} data={departments} />
       <SearchableDropdown label="Supplier" selected={selectedSupplier} setSelected={setSelectedSupplier} query={supplierQuery} setQuery={setSupplierQuery} data={suppliers} />
 
-      <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">{loading ? "Creating..." : "Create"}</button>
+      <div className="flex flex-wrap justify-center gap-4">
+        <button type="submit" className="flex items-center bg-green-600 text-white px-4 py-2 rounded">
+          <FaDatabase className="mr-2" />
+          {loading ? "Creating..." : "Create"}
+        </button>
+
+        <button onClick={() => reset()} className="flex items-center bg-red-500 text-white px-4 py-2 rounded">
+          <FaTimes className="mr-2" />
+          Cancel
+        </button>
+      </div>
+
+      {/* Show message */}
+      {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
     </form>
   )
 
