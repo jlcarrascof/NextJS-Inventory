@@ -41,6 +41,16 @@ export default function ProductForm() {
   const [loading, setLoading] = useState(false)
 
   const onSubmit = async (data: ProductFormInputs) => {
+
+    if (!selectedDepartment || !selectedDepartment.id) {
+      setMessage("Please select a valid department.")
+      return
+    }
+    if (!selectedSupplier || !selectedSupplier.id) {
+      setMessage("Please select a valid supplier.")
+      return
+    }
+
     setLoading(true)
     try {
       const payload = { ...data, quantity: Number(data.quantity), price: Number(data.price), cost: Number(data.cost) }
