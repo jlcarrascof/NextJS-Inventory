@@ -68,6 +68,7 @@ export default function ProductForm() {
   }
 
   return (
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white p-6 rounded-lg shadow w-full max-w-2xl">
       <h2 className="text-2xl font-bold text-center bg-green-100 text-green-800 px-4 py-2 rounded-md shadow-sm">Create Product</h2>
 
@@ -94,6 +95,7 @@ export default function ProductForm() {
       {/* Show message */}
       {message && <p className="mt-4 text-sm text-gray-700">{message}</p>}
     </form>
+    </div>
   )
 
 }
