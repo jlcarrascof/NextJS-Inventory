@@ -19,6 +19,11 @@ export function SearchableDropdown<T extends { id: number; name: string }>({
     setQuery,
     data,
   }: SearchableDropdownProps<T>) {
+
+    const filteredData = query === ""
+      ? data
+      : data.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
+
     return (
       <div className="relative">
         <label className="block font-medium">{label}</label>
@@ -31,10 +36,10 @@ export function SearchableDropdown<T extends { id: number; name: string }>({
               displayValue={(item: T) => item?.name || ""}
             />
             <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full bg-white border rounded shadow-lg">
-              {data.length === 0 ? (
+              {filteredData.length === 0 ? (
                 <div className="cursor-default select-none p-2 text-gray-500">No results found</div>
               ) : (
-                data.map((item) => (
+                filteredData.map((item) => (
                   <Combobox.Option key={item.id} value={item} className="cursor-pointer select-none p-2">
                     {item.name}
                   </Combobox.Option>
