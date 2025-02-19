@@ -16,15 +16,25 @@ interface ProductFormInputs {
   supplierId?: number
 }
 
+interface Department {
+  id: number
+  name: string
+}
+
+interface Supplier {
+  id: number
+  name: string
+}
+
 export default function ProductForm() {
   const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<ProductFormInputs>()
   const { data: departments } = useFetchData("/api/departments")
   const { data: suppliers } = useFetchData("/api/suppliers")
 
-  const [selectedDepartment, setSelectedDepartment] = useState(null)
+  const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
   const [departmentQuery, setDepartmentQuery] = useState("")
 
-  const [selectedSupplier, setSelectedSupplier] = useState(null)
+  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
   const [supplierQuery, setSupplierQuery] = useState("")
 
   const [message, setMessage] = useState("")
@@ -57,5 +67,20 @@ export default function ProductForm() {
     }
   }
 
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white p-6 rounded-lg shadow w-full max-w-2xl">
+      <h2 className="text-2xl font-bold text-center bg-green-100 text-green-800 px-4 py-2 rounded-md shadow-sm">Create Product</h2>
+
+      <InputField label="Product Name" name="name" register={register} errors={errors} validation={{ required: "Required" }} />
+      <InputField label="Quantity" name="quantity" type="number" register={register} errors={errors} validation={{ required: "Required", min: 1 }} />
+      <InputField label="Price" name="price" type="number" step="0.01" register={register} errors={errors} validation={{ required: "Required", min: 0 }} />
+      <InputField label="Cost" name="cost" type="number" step="0.01" register={register} errors={errors} validation={{ required: "Required", min: 0 }} />
+
+      <SearchableDropdown label="Department" selected={selectedDepartment} setSelected={setSelectedDepartment} query={departmentQuery} setQuery={setDepartmentQuery} data={departments} />
+      <SearchableDropdown label="Supplier" selected={selectedSupplier} setSelected={setSelectedSupplier} query={supplierQuery} setQuery={setSupplierQuery} data={suppliers} />
+
+      <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">{loading ? "Creating..." : "Create"}</button>
+    </form>
+  )
 
 }
