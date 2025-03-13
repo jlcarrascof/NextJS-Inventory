@@ -54,26 +54,32 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
     try {
-        const url = new URL(req.url)
-        const page = parseInt(url.searchParams.get('page') || '1', 10)
-        const limit = parseInt(url.searchParams.get('limit') || '10', 10)
-        const search = url.searchParams.get('search') || ''
-        const orderBy = url.searchParams.get('orderBy') || 'name'
-        const orderDirection = url.searchParams.get('orderDirection') === 'desc' ? 'desc' : 'asc'
+        const url = new URL(req.url);
+        const page = parseInt(url.searchParams.get('page') || '1', 10);
+        const limit = parseInt(url.searchParams.get('limit') || '10', 10);
+        const search = url.searchParams.get('search') || '';
+        const orderBy = url.searchParams.get('orderBy') || 'name';
+        const orderDirection = url.searchParams.get('orderDirection') === 'desc' ? 'desc' : 'asc';
 
         const products = search
             ? await prisma.product.findMany({
-                where: { name: { contains: search } },
+                where: {
+                    name: {
+                        contains: search,
+                    },
+                },
+                orderBy: { [orderBy]: orderDirection }
             })
             : await prisma.product.findMany({
                 skip: (page - 1) * limit,
                 take: limit,
-            })
+                orderBy: { [orderBy]: orderDirection }
+            });
 
-        const total = await prisma.product.count()
+        const total = await prisma.product.count();
 
-        return Response.json({ products, total, page, limit }, { status: 200 })
+        return Response.json({ products, total, page, limit }, { status: 200 });
     } catch (error) {
-        return new Response('Failed to fetch products', { status: 500 })
+        return new Response('Failed to fetch products', { status: 500 });
     }
 }
