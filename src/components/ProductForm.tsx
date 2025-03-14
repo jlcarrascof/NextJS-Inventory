@@ -109,6 +109,7 @@ export default function ProductForm() {
         </button>
 
         <button
+          type="button"
           onClick={() => window.location.href = '/dashboard/products/list'}
           className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
