@@ -1,58 +1,58 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { FaArrowLeft, FaArrowRight, FaSearch, FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { useState, useEffect } from 'react'
+import { FaArrowLeft, FaArrowRight, FaSearch, FaArrowUp, FaArrowDown } from 'react-icons/fa'
 
 interface Product {
-    id: number;
-    name: string;
-    quantity: number;
-    price: number;
+    id: number
+    name: string
+    quantity: number
+    price: number
 }
 
 export default function ProductList() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [search, setSearch] = useState('');
-    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-    const limit = 10;
+    const [products, setProducts] = useState<Product[]>([])
+    const [loading, setLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+    const [search, setSearch] = useState('')
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+    const limit = 10
 
     useEffect(() => {
         fetchProducts();
-    }, [page, search, sortOrder]);
+    }, [page, search, sortOrder])
 
     const fetchProducts = async () => {
-        setLoading(true);
+        setLoading(true)
         try {
-            const response = await fetch(`/api/products?page=${page}&limit=${limit}&search=${search}&orderBy=price&orderDirection=${sortOrder}`);
+            const response = await fetch(`/api/products?page=${page}&limit=${limit}&search=${search}&orderBy=price&orderDirection=${sortOrder}`)
             if (response.ok) {
-                const data = await response.json();
+                const data = await response.json()
                 setProducts(data.products);
-                setTotalPages(Math.ceil(data.total / limit));
+                setTotalPages(Math.ceil(data.total / limit))
             } else {
-                console.error('Failed to fetch products');
+                console.error('Failed to fetch products')
             }
         } catch (error) {
-            console.error('Error fetching products:', error);
+            console.error('Error fetching products:', error)
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
     };
-    
+
     const handleNext = () => {
-        if (page < totalPages) setPage(page + 1);
-    };
+        if (page < totalPages) setPage(page + 1)
+    }
 
     const handlePrevious = () => {
-        if (page > 1) setPage(page - 1);
-    };
+        if (page > 1) setPage(page - 1)
+    }
 
     const toggleSort = () => {
         setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-        setProducts([...products].sort((a, b) => sortOrder === 'asc' ? b.price - a.price : a.price - b.price));
-    };
+        setProducts([...products].sort((a, b) => sortOrder === 'asc' ? b.price - a.price : a.price - b.price))
+    }
 
     return (
         <div className="p-6 bg-white rounded shadow-md">
@@ -111,6 +111,13 @@ export default function ProductList() {
                     </div>
                 </>
             )}
+
+            <button
+                onClick={() => window.location.href = '/dashboard/products/'}
+                className="mt-4 flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+                <FaArrowLeft className="mr-2" /> <span>Back to Form</span>
+            </button>
         </div>
-    );
+    )
 }
