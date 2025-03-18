@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { useFetchData } from "@/hooks/useFetchData"
 import { InputField } from "@/components/InputField"
 import { SearchableDropdown } from "@/components/SearchableDropdown"
-import { FaDatabase, FaTimes } from "react-icons/fa"
+import { FaDatabase, FaTimes, FaFileAlt } from "react-icons/fa"
 
 interface ProductFormInputs {
   name: string
@@ -106,6 +106,15 @@ export default function ProductForm() {
         <button onClick={() => reset()} className="flex items-center bg-red-500 text-white px-4 py-2 rounded">
           <FaTimes className="mr-2" />
           Cancel
+        </button>
+
+        <button
+          type="button"
+          onClick={() => window.location.href = '/dashboard/products/list'}
+          className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          <FaFileAlt className="mr-2" />
+          <span>View List</span>
         </button>
       </div>
 
